@@ -276,7 +276,7 @@ td strong{color:var(--tx);font-weight:500}
     <div class="sbfoot">
       <div class="sbuser">
         <div class="sbav">A</div>
-        <div><div class="sbuname">Admin</div><div class="sbemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb9b8a998a8f82988eab998e989fc58285">[email&#160;protected]</a></div></div>
+        <div><div class="sbuname">Admin</div><div class="sbemail">paradise@rest.in</div></div>
         <button class="sblogout" id="logoutBtn" title="Logout">&#9211;</button>
       </div>
     </div>
@@ -289,7 +289,7 @@ td strong{color:var(--tx);font-weight:500}
         <div class="tbtitle" id="tbtitle"><strong>Dashboard</strong></div>
       </div>
       <div class="tbright">
-        <div class="tbpill err" id="dbstatus">Not configured</div>
+        <div class="tbpill" id="dbstatus">Connected</div>
         <span style="font-size:11px;color:var(--tf)" id="lastSync"></span>
         <span style="font-size:12px;color:var(--tf)" id="clock"></span>
       </div>
@@ -361,7 +361,7 @@ td strong{color:var(--tx);font-weight:500}
 
 <div id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function() {
 "use strict";
 
@@ -370,7 +370,7 @@ td strong{color:var(--tx);font-weight:500}
    Replace the URL below with your Firebase Realtime Database URL.
    Example: https://paradise-abc12-default-rtdb.firebaseio.com
    ================================================================ */
-var FIREBASE_URL = "https://paradise-restaurant-4cdb8-default-rtdb.asia-southeast1.firebasedatabase.app"; // <-- PASTE YOUR FIREBASE URL HERE
+var FIREBASE_URL = "https://paradise-restaurant-4cdb8-default-rtdb.asia-southeast1.firebasedatabase.app";
 
 var MK = "paradise_menu_v2";
 var DEF_MENU = [
@@ -613,7 +613,7 @@ async function renderDashboard() {
   });
 
   clearInterval(refreshTimer);
-  refreshTimer = setInterval(function(){ if(currentPage==="dashboard") renderDashboard(); }, 15000);
+  refreshTimer = setInterval(function(){ if(currentPage==="dashboard") renderDashboard(); }, 30000);
 }
 
 /* ── Menu ── */
@@ -778,7 +778,7 @@ async function renderReservations() {
   document.getElementById("rdatef").addEventListener("change", function(){ filterRes(res); });
 
   clearInterval(refreshTimer);
-  refreshTimer = setInterval(function(){ if(currentPage==="reservations") renderReservations(); }, 15000);
+  refreshTimer = setInterval(function(){ if(currentPage==="reservations") renderReservations(); }, 30000);
 }
 
 function filterRes(allRes) {
@@ -901,4 +901,13 @@ function renderSettings() {
     showToast("Password updated");
   });
   document.getElementById("resetMenuBtn").addEventListener("click", function(){
-    showConfirm(
+    showConfirm("Reset Menu?","Restores all default menu items.",function(){ localStorage.removeItem(MK); showToast("Menu reset"); renderMenu(); });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", init);
+
+})();
+</script>
+</body>
+</html>
