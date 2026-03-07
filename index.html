@@ -2,31 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Paradise Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0f1824;--bg2:#162030;--bg3:#1e2d40;
-  --gold:#c5883a;--gl:#e0a85a;--gp:rgba(197,136,58,.12);--gb:rgba(197,136,58,.25);
-  --tx:#e8edf4;--td:rgba(232,237,244,.5);--tf:rgba(232,237,244,.28);
-  --br:rgba(255,255,255,.07);
-  --red:#e05555;--rp:rgba(224,85,85,.12);
-  --grn:#4caf7d;--grnp:rgba(76,175,125,.12);
-  --amb:#e0a030;--ambp:rgba(224,160,48,.12);
-}
+:root{--bg:#0f1824;--bg2:#162030;--bg3:#1e2d40;--gold:#c5883a;--gl:#e0a85a;--gp:rgba(197,136,58,.12);--gb:rgba(197,136,58,.25);--tx:#e8edf4;--td:rgba(232,237,244,.5);--tf:rgba(232,237,244,.28);--br:rgba(255,255,255,.07);--red:#e05555;--rp:rgba(224,85,85,.12);--grn:#4caf7d;--grnp:rgba(76,175,125,.12);--amb:#e0a030;--ambp:rgba(224,160,48,.12)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--tx);overflow:hidden}
-h1,h2,h3{font-family:"Cormorant Garamond",serif}
-button,input,select,textarea{font-family:"DM Sans",sans-serif}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-thumb{background:rgba(197,136,58,.3);border-radius:2px}
-
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',serif}
+button,input,select,textarea{font-family:'DM Sans',sans-serif}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(197,136,58,.3);border-radius:2px}
 #loginScreen{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center}
 .lbox{width:min(380px,92vw);background:var(--bg2);border:1px solid var(--br);border-radius:20px;padding:44px 36px 36px;position:relative;overflow:hidden}
 .lglow{position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(197,136,58,.15),transparent 70%);pointer-events:none}
 .llogo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:8px}
-.llogo::before{content:"";width:20px;height:1px;background:var(--gold)}
+.llogo::before{content:'';width:20px;height:1px;background:var(--gold)}
 .ltitle{font-size:32px;color:#fff;margin-bottom:6px;font-weight:400}
 .ltitle em{color:var(--gold);font-style:italic}
 .lsub{font-size:12.5px;color:var(--td);margin-bottom:32px}
@@ -38,13 +28,11 @@ button,input,select,textarea{font-family:"DM Sans",sans-serif}
 .lbtn:hover{background:var(--gl)}
 .lerr{font-size:12px;color:#e07070;margin-top:8px;text-align:center;min-height:18px}
 .lhint{font-size:11px;color:var(--tf);text-align:center;margin-top:16px}
-
-#app{display:flex;height:100vh;opacity:0;transition:opacity .4s}
-#app.on{opacity:1}
-
-.sidebar{width:230px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--br);display:flex;flex-direction:column;overflow:hidden}
+#app{display:flex;height:100vh;opacity:0;transition:opacity .4s;pointer-events:none}
+#app.on{opacity:1;pointer-events:all}
+.sidebar{width:230px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--br);display:flex;flex-direction:column}
 .sbhead{padding:22px 20px 18px;border-bottom:1px solid var(--br)}
-.sbbrand{font-family:"Cormorant Garamond",serif;font-size:18px;color:#fff}
+.sbbrand{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff}
 .sbbrand span{color:var(--gold)}
 .sbrole{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tf);margin-top:3px}
 .sbnav{flex:1;padding:14px 10px;overflow-y:auto}
@@ -56,28 +44,25 @@ button,input,select,textarea{font-family:"DM Sans",sans-serif}
 .sbbadge{margin-left:auto;background:var(--red);color:#fff;font-size:9px;padding:2px 7px;border-radius:10px;font-weight:600}
 .sbfoot{padding:16px 14px;border-top:1px solid var(--br)}
 .sbuser{display:flex;align-items:center;gap:10px}
-.sbav{width:34px;height:34px;border-radius:50%;background:var(--gp);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.sbav{width:34px;height:34px;border-radius:50%;background:var(--gp);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .sbuname{font-size:13px;color:var(--tx)}
-.sbemail{font-size:10.5px;color:var(--tf)}
 .sblogout{margin-left:auto;background:transparent;border:none;color:var(--tf);font-size:18px;cursor:pointer;padding:4px;transition:color .2s}
 .sblogout:hover{color:var(--red)}
-
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .topbar{height:58px;flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--br);display:flex;align-items:center;justify-content:space-between;padding:0 26px}
-.tbtitle{font-size:13px;color:var(--td)}
-.tbtitle strong{color:var(--tx);font-weight:500}
+.tbtitle strong{color:var(--tx);font-weight:500;font-size:14px}
 .tbright{display:flex;align-items:center;gap:12px}
-.tbpill{display:flex;align-items:center;gap:6px;background:var(--grnp);border:1px solid rgba(76,175,125,.25);border-radius:100px;padding:4px 12px;font-size:11.5px;color:var(--grn)}
-.tbpill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--grn)}
-.tbpill.err{background:var(--rp);border-color:rgba(224,85,85,.25);color:var(--red)}
-.tbpill.err::before{background:var(--red)}
+.pill{display:flex;align-items:center;gap:6px;border-radius:100px;padding:4px 12px;font-size:11.5px}
+.pill-grn{background:var(--grnp);border:1px solid rgba(76,175,125,.25);color:var(--grn)}
+.pill-grn::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn)}
+.pill-red{background:var(--rp);border:1px solid rgba(224,85,85,.25);color:var(--red)}
+.pill-red::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red)}
 .body{flex:1;overflow-y:auto;padding:28px 26px 50px}
-
 .card{background:var(--bg2);border:1px solid var(--br);border-radius:12px;padding:22px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .fb{display:flex;align-items:center;justify-content:space-between}
-.tag{display:inline-flex;align-items:center;gap:4px;border-radius:100px;padding:3px 10px;font-size:11px;font-weight:500}
+.tag{display:inline-flex;align-items:center;border-radius:100px;padding:3px 10px;font-size:11px;font-weight:500}
 .tgrn{background:var(--grnp);color:var(--grn);border:1px solid rgba(76,175,125,.25)}
 .tamb{background:var(--ambp);color:var(--amb);border:1px solid rgba(224,160,48,.25)}
 .tred{background:var(--rp);color:var(--red);border:1px solid rgba(224,85,85,.25)}
@@ -87,161 +72,112 @@ button,input,select,textarea{font-family:"DM Sans",sans-serif}
 .stitle em{color:var(--gold);font-style:italic}
 .ssub{font-size:12.5px;color:var(--td);margin-bottom:22px}
 .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .2s}
-.bgold{background:var(--gold);color:#fff}
-.bgold:hover{background:var(--gl)}
-.bghst{background:rgba(255,255,255,.06);color:var(--td);border:1px solid var(--br)}
-.bghst:hover{background:rgba(255,255,255,.1);color:var(--tx)}
-.bdng{background:var(--rp);color:var(--red);border:1px solid rgba(224,85,85,.25)}
-.bdng:hover{background:rgba(224,85,85,.22)}
+.bgold{background:var(--gold);color:#fff}.bgold:hover{background:var(--gl)}
+.bghst{background:rgba(255,255,255,.06);color:var(--td);border:1px solid var(--br)}.bghst:hover{background:rgba(255,255,255,.1);color:var(--tx)}
+.bdng{background:var(--rp);color:var(--red);border:1px solid rgba(224,85,85,.25)}.bdng:hover{background:rgba(224,85,85,.22)}
 .bsm{padding:7px 13px;font-size:12px}
-
 .scard{background:var(--bg2);border:1px solid var(--br);border-radius:12px;padding:20px;position:relative;overflow:hidden}
-.scard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent)}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent)}
 .slabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--tf);margin-bottom:10px}
-.snum{font-family:"Cormorant Garamond",serif;font-size:36px;color:#fff;line-height:1;margin-bottom:6px}
+.snum{font-family:'Cormorant Garamond',serif;font-size:36px;color:#fff;line-height:1;margin-bottom:6px}
 .schange{font-size:11.5px;color:var(--td)}
 .sicon{position:absolute;top:16px;right:16px;font-size:22px;opacity:.25}
-
 .twrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
 thead th{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--tf);padding:10px 14px;text-align:left;border-bottom:1px solid var(--br);font-weight:500;white-space:nowrap}
 tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s}
 tbody tr:hover{background:rgba(255,255,255,.025)}
-tbody tr:last-child{border:none}
 td{padding:13px 14px;font-size:13px;color:var(--td);vertical-align:middle}
 td strong{color:var(--tx);font-weight:500}
-.tda{display:flex;gap:6px;justify-content:flex-end}
-
-.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
-.mcard{background:var(--bg2);border:1px solid var(--br);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s}
-.mcard:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
-.mimg{height:140px;background:var(--bg3);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.mcard{background:var(--bg2);border:1px solid var(--br);border-radius:12px;overflow:hidden;transition:transform .2s}
+.mcard:hover{transform:translateY(-2px)}
+.mimg{height:130px;background:var(--bg3);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .mimg img{width:100%;height:100%;object-fit:cover}
-.mnoimg{font-size:32px;opacity:.2}
 .mbody{padding:14px}
 .mcat{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
-.mname{font-family:"Cormorant Garamond",serif;font-size:17px;color:#fff;margin-bottom:4px}
-.mdesc{font-size:11.5px;color:var(--tf);line-height:1.6;margin-bottom:10px;min-height:34px}
+.mname{font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;margin-bottom:4px}
+.mdesc{font-size:11.5px;color:var(--tf);line-height:1.6;margin-bottom:10px;min-height:30px}
 .mfoot{display:flex;align-items:center;justify-content:space-between}
 .mprice{font-size:14px;color:var(--gl);font-weight:500}
 .macts{display:flex;gap:5px}
 .ibtn{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;border:none;transition:all .2s}
-.iedit{background:rgba(197,136,58,.1);color:var(--gold)}
-.iedit:hover{background:rgba(197,136,58,.22)}
-.idel{background:var(--rp);color:var(--red)}
-.idel:hover{background:rgba(224,85,85,.25)}
+.iedit{background:rgba(197,136,58,.1);color:var(--gold)}.iedit:hover{background:rgba(197,136,58,.25)}
+.idel{background:var(--rp);color:var(--red)}.idel:hover{background:rgba(224,85,85,.25)}
 .mavail{position:absolute;top:8px;right:8px;font-size:10px;padding:2px 9px;border-radius:100px;font-weight:500}
-
 .mbg{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px}
 .mbg.on{opacity:1;pointer-events:all}
-.modal{background:var(--bg2);border:1px solid var(--br);border-radius:16px;width:min(520px,100%);max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.modal{background:var(--bg2);border:1px solid var(--br);border-radius:16px;width:min(520px,100%);max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .3s}
 .mbg.on .modal{transform:translateY(0)}
 .mhead{padding:22px 24px 18px;border-bottom:1px solid var(--br);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg2);z-index:1}
-.mtitle{font-size:20px;color:#fff;font-weight:400}
-.mtitle em{color:var(--gold);font-style:italic}
+.mtitle{font-size:20px;color:#fff;font-weight:400}.mtitle em{color:var(--gold);font-style:italic}
 .mclose{width:30px;height:30px;background:rgba(255,255,255,.07);border:none;border-radius:50%;color:var(--td);font-size:15px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
 .mclose:hover{background:var(--rp);color:var(--red)}
 .mbody2{padding:22px 24px}
 .mfooter{padding:14px 24px;border-top:1px solid var(--br);display:flex;gap:10px;justify-content:flex-end}
-
 .fg{margin-bottom:18px}
 .fl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--td);margin-bottom:7px;display:block}
 .fl span{color:var(--gold)}
 .fi,.fs,.fta{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:11px 14px;font-size:13.5px;color:#fff;outline:none;transition:border-color .2s}
-.fi:focus,.fs:focus,.fta:focus{border-color:var(--gold);background:rgba(197,136,58,.06)}
+.fi:focus,.fs:focus,.fta:focus{border-color:var(--gold)}
 .fi::placeholder,.fta::placeholder{color:rgba(255,255,255,.2)}
-.fs{cursor:pointer}
-.fs option{background:#1e2d40}
+.fs{cursor:pointer}.fs option{background:#1e2d40}
 .fta{resize:vertical;min-height:80px;line-height:1.6}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ferr{border-color:var(--red) !important}
-
-.iupload{border:2px dashed rgba(255,255,255,.12);border-radius:10px;padding:22px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative;overflow:hidden}
-.iupload:hover{border-color:var(--gb);background:var(--gp)}
+.ferr{border-color:var(--red)!important}
+.iupload{border:2px dashed rgba(255,255,255,.12);border-radius:10px;padding:22px;text-align:center;cursor:pointer;transition:border-color .2s;position:relative;overflow:hidden}
+.iupload:hover{border-color:var(--gb)}
 .iupload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.iuicon{font-size:24px;margin-bottom:7px;opacity:.4}
-.iutext{font-size:13px;color:var(--td)}
-.iuhint{font-size:11px;color:var(--tf);margin-top:3px}
-.ipwrap{position:relative;border-radius:10px;overflow:hidden;height:156px}
+.ipwrap{position:relative;border-radius:10px;overflow:hidden;height:150px}
 .ipwrap img{width:100%;height:100%;object-fit:cover}
 .iprem{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);border:none;border-radius:50%;width:28px;height:28px;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-
 .tgwrap{display:flex;align-items:center;gap:10px}
 .tg{width:42px;height:24px;border-radius:12px;background:rgba(255,255,255,.1);border:none;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
-.tg::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
-.tg.on{background:var(--gold)}
-.tg.on::after{transform:translateX(18px)}
+.tg::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
+.tg.on{background:var(--gold)}.tg.on::after{transform:translateX(18px)}
 .tglabel{font-size:13px;color:var(--td)}
-
-.rdpanel{position:fixed;right:0;top:0;bottom:0;width:min(380px,100vw);background:var(--bg2);border-left:1px solid var(--br);z-index:400;transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;overflow:hidden}
+.rdpanel{position:fixed;right:0;top:0;bottom:0;width:min(380px,100vw);background:var(--bg2);border-left:1px solid var(--br);z-index:400;transform:translateX(100%);transition:transform .35s;display:flex;flex-direction:column}
 .rdpanel.on{transform:translateX(0)}
 .rdhead{padding:20px 22px 16px;border-bottom:1px solid var(--br);display:flex;align-items:center;justify-content:space-between}
 .rdtitle{font-size:18px;color:#fff;font-weight:400}
-.rdclose{width:28px;height:28px;background:rgba(255,255,255,.07);border:none;border-radius:50%;color:var(--td);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.rdclose{width:28px;height:28px;background:rgba(255,255,255,.07);border:none;border-radius:50%;color:var(--td);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .rdclose:hover{background:var(--rp);color:var(--red)}
 .rdbody{flex:1;overflow-y:auto;padding:20px 22px}
 .rdref{font-size:11px;letter-spacing:.1em;color:var(--gold);background:var(--gp);border:1px solid var(--gb);border-radius:6px;padding:5px 12px;display:inline-block;margin-bottom:18px}
-.rdname{font-family:"Cormorant Garamond",serif;font-size:24px;color:#fff;margin-bottom:6px}
-.rdrow{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
-.rdrow:last-of-type{border:none}
+.rdname{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;margin-bottom:6px}
+.rdrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
 .rdkey{color:var(--tf);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .rdval{color:var(--tx);font-weight:500;text-align:right;max-width:60%}
 .rdorders{background:var(--bg3);border-radius:9px;padding:14px;margin-top:14px}
 .rdohead{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tf);margin-bottom:10px}
 .rdorow{display:flex;justify-content:space-between;font-size:12.5px;color:var(--td);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)}
-.rdorow:last-child{border:none}
 .rdfoot{padding:16px 22px;border-top:1px solid var(--br);display:flex;flex-direction:column;gap:8px}
 .rdsbrow{display:flex;gap:8px}
 .rdsb{flex:1;padding:10px;border-radius:8px;font-size:12.5px;font-weight:500;cursor:pointer;border:none;transition:all .2s}
-
 .fbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
 .fsearch{background:rgba(255,255,255,.05);border:1px solid var(--br);border-radius:8px;padding:9px 14px;font-size:13px;color:#fff;outline:none;transition:border-color .2s}
 .fsearch:focus{border-color:var(--gold)}
 .fsearch::placeholder{color:rgba(255,255,255,.2)}
 .fsel{background:rgba(255,255,255,.05);border:1px solid var(--br);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--td);outline:none;cursor:pointer}
 .fsel option{background:#1e2d40}
-
 .empty{text-align:center;padding:60px 20px}
 .eicon{font-size:40px;opacity:.2;margin-bottom:14px}
-.etitle{font-family:"Cormorant Garamond",serif;font-size:22px;color:var(--td);margin-bottom:6px}
+.etitle{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--td);margin-bottom:6px}
 .esub{font-size:13px;color:var(--tf)}
-
-/* setup banner */
-.setup-banner{background:rgba(197,136,58,.1);border:1px solid var(--gb);border-radius:12px;padding:20px 22px;margin-bottom:22px}
-.setup-banner h3{font-size:16px;color:var(--gl);margin-bottom:8px}
-.setup-banner p{font-size:12.5px;color:var(--td);line-height:1.8;margin-bottom:4px}
-.setup-banner code{background:rgba(255,255,255,.08);border-radius:4px;padding:2px 7px;font-size:12px;color:var(--gl);font-family:monospace}
-.setup-banner a{color:var(--gold)}
-
-/* loading spinner */
-.spinner{width:32px;height:32px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
+.spinner{width:30px;height:30px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg3);border:1px solid var(--br);border-radius:100px;padding:10px 22px;font-size:13px;color:var(--tx);opacity:0;transition:all .3s;z-index:9000;pointer-events:none;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg3);border:1px solid var(--br);border-radius:100px;padding:10px 22px;font-size:13px;color:var(--tx);opacity:0;transition:all .3s;z-index:9000;pointer-events:none;white-space:nowrap}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
 .cfbg{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .cfbg.on{opacity:1;pointer-events:all}
-.cfbox{background:var(--bg2);border:1px solid var(--br);border-radius:14px;padding:28px;width:min(340px,90vw);text-align:center;transform:scale(.96);transition:transform .25s}
-.cfbg.on .cfbox{transform:scale(1)}
-.cficon{font-size:30px;margin-bottom:12px}
+.cfbox{background:var(--bg2);border:1px solid var(--br);border-radius:14px;padding:28px;width:min(340px,90vw);text-align:center}
 .cftitle{font-size:18px;color:#fff;margin-bottom:8px}
 .cfmsg{font-size:13px;color:var(--td);margin-bottom:22px;line-height:1.6}
 .cfbtns{display:flex;gap:10px}
-
-@media(max-width:700px){
-  .sidebar{position:fixed;left:0;top:0;bottom:0;z-index:300;transform:translateX(-100%);transition:transform .3s}
-  .sidebar.mob{transform:translateX(0)}
-  .g4{grid-template-columns:1fr 1fr}
-  .fr{grid-template-columns:1fr}
-  .mgrid{grid-template-columns:1fr 1fr}
-}
-.mobbtn{display:none;background:transparent;border:none;color:var(--td);font-size:20px;cursor:pointer;padding:4px}
-@media(max-width:700px){.mobbtn{display:flex}}
+@media(max-width:700px){.g4{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}.fr{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <div id="loginScreen">
   <div class="lbox">
     <div class="lglow"></div>
@@ -249,21 +185,17 @@ td strong{color:var(--tx);font-weight:500}
     <h1 class="ltitle">Welcome <em>Back</em></h1>
     <p class="lsub">Sign in to manage your restaurant</p>
     <label class="llabel">Username</label>
-    <input type="text" class="linput" id="lu" placeholder="admin">
+    <input type="text" class="linput" id="lu" placeholder="admin" autocomplete="username">
     <label class="llabel">Password</label>
-    <input type="password" class="linput" id="lp" placeholder="1234">
+    <input type="password" class="linput" id="lp" placeholder="Enter password" autocomplete="current-password">
     <button class="lbtn" id="loginBtn">Sign In</button>
     <div class="lerr" id="lerr"></div>
-    <div class="lhint">Login: admin / 1234</div>
+    <div class="lhint">admin / 1234</div>
   </div>
 </div>
-
 <div id="app">
-  <aside class="sidebar" id="sidebar">
-    <div class="sbhead">
-      <div class="sbbrand"><span>Paradise</span> Admin</div>
-      <div class="sbrole">Restaurant Manager</div>
-    </div>
+  <aside class="sidebar">
+    <div class="sbhead"><div class="sbbrand"><span>Paradise</span> Admin</div><div class="sbrole">Restaurant Manager</div></div>
     <nav class="sbnav">
       <div class="sbsec">Main</div>
       <div class="sbitem on" id="ni0"><span class="sbicon">&#9632;</span> Dashboard</div>
@@ -276,629 +208,308 @@ td strong{color:var(--tx);font-weight:500}
     <div class="sbfoot">
       <div class="sbuser">
         <div class="sbav">A</div>
-        <div><div class="sbuname">Admin</div><div class="sbemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71011003101518021431031402055f181f">[email&#160;protected]</a></div></div>
-        <button class="sblogout" id="logoutBtn" title="Logout">&#9211;</button>
+        <div><div class="sbuname">Admin</div></div>
+        <button class="sblogout" id="logoutBtn" title="Logout">&#10005;</button>
       </div>
     </div>
   </aside>
-
   <div class="main">
     <div class="topbar">
-      <div style="display:flex;align-items:center;gap:12px">
-        <button class="mobbtn" id="mobBtn">&#9776;</button>
-        <div class="tbtitle" id="tbtitle"><strong>Dashboard</strong></div>
-      </div>
+      <div class="tbtitle" id="tbtitle"><strong>Dashboard</strong></div>
       <div class="tbright">
-        <div class="tbpill" id="dbstatus">Connected</div>
-        <span style="font-size:11px;color:var(--tf)" id="lastSync"></span>
+        <div class="pill pill-red" id="dbpill">Offline</div>
         <span style="font-size:12px;color:var(--tf)" id="clock"></span>
       </div>
     </div>
     <div class="body" id="body"></div>
   </div>
 </div>
-
 <div class="rdpanel" id="rdpanel">
-  <div class="rdhead">
-    <div class="rdtitle">Reservation Details</div>
-    <button class="rdclose" id="rdcloseBtn">&#10005;</button>
-  </div>
+  <div class="rdhead"><div class="rdtitle">Reservation Details</div><button class="rdclose" id="rdcloseBtn">&#10005;</button></div>
   <div class="rdbody" id="rdbody"></div>
   <div class="rdfoot" id="rdfoot"></div>
 </div>
-
 <div class="mbg" id="menuModal">
   <div class="modal">
-    <div class="mhead">
-      <div class="mtitle" id="mtitle">Add <em>Menu Item</em></div>
-      <button class="mclose" id="mcloseBtn">&#10005;</button>
-    </div>
+    <div class="mhead"><div class="mtitle" id="mtitle">Add <em>Item</em></div><button class="mclose" id="mcloseBtn">&#10005;</button></div>
     <div class="mbody2">
       <div class="fg" id="imgGroup"></div>
       <div class="fr">
-        <div class="fg"><label class="fl">Item Name <span>*</span></label><input type="text" class="fi" id="miName" placeholder="e.g. Chicken Pollichathu"></div>
+        <div class="fg"><label class="fl">Name <span>*</span></label><input type="text" class="fi" id="miName" placeholder="Item name"></div>
         <div class="fg"><label class="fl">Category <span>*</span></label>
-          <select class="fs" id="miCat">
-            <option value="">Select...</option>
-            <option>South Indian</option><option>North Indian</option><option>Biryani</option>
-            <option>BBQ &amp; Grills</option><option>Chinese</option><option>Seafood</option>
-            <option>Breads</option><option>Beverages</option><option>Desserts</option><option>Starters</option>
-          </select>
+          <select class="fs" id="miCat"><option value="">Select...</option><option>South Indian</option><option>North Indian</option><option>Biryani</option><option>BBQ &amp; Grills</option><option>Chinese</option><option>Seafood</option><option>Breads</option><option>Beverages</option><option>Desserts</option><option>Starters</option></select>
         </div>
       </div>
       <div class="fr">
-        <div class="fg"><label class="fl">Price <span>*</span></label><input type="text" class="fi" id="miPrice" placeholder="e.g. Rs.280 or 280-350"></div>
-        <div class="fg"><label class="fl">Serves</label>
-          <select class="fs" id="miServes"><option value="1">1 person</option><option value="2">2 persons</option><option value="4">Family (4)</option></select>
-        </div>
+        <div class="fg"><label class="fl">Price <span>*</span></label><input type="text" class="fi" id="miPrice" placeholder="e.g. Rs.280"></div>
+        <div class="fg"><label class="fl">Serves</label><select class="fs" id="miServes"><option value="1">1 person</option><option value="2">2 persons</option><option value="4">Family (4)</option></select></div>
       </div>
       <div class="fg"><label class="fl">Description</label><textarea class="fta" id="miDesc" placeholder="Brief description..."></textarea></div>
-      <div class="fg">
-        <div class="tgwrap">
-          <button class="tg on" id="miToggle"></button>
-          <span class="tglabel" id="miToggleLabel">Available</span>
-        </div>
-      </div>
+      <div class="fg"><div class="tgwrap"><button class="tg on" id="miToggle"></button><span class="tglabel" id="miToggleLabel">Available</span></div></div>
     </div>
-    <div class="mfooter">
-      <button class="btn bghst" id="mcancelBtn">Cancel</button>
-      <button class="btn bgold" id="msaveBtn">Save Item</button>
-    </div>
+    <div class="mfooter"><button class="btn bghst" id="mcancelBtn">Cancel</button><button class="btn bgold" id="msaveBtn">Save Item</button></div>
   </div>
 </div>
-
 <div class="cfbg" id="cfbg">
   <div class="cfbox">
-    <div class="cficon" id="cficon">&#128465;</div>
     <div class="cftitle" id="cftitle">Are you sure?</div>
     <div class="cfmsg" id="cfmsg">This cannot be undone.</div>
-    <div class="cfbtns">
-      <button class="btn bghst" style="flex:1" id="cfcancelBtn">Cancel</button>
-      <button class="btn bdng" style="flex:1" id="cfokBtn">Confirm</button>
-    </div>
+    <div class="cfbtns"><button class="btn bghst" style="flex:1" id="cfcancelBtn">Cancel</button><button class="btn bdng" style="flex:1" id="cfokBtn">Confirm</button></div>
   </div>
 </div>
-
 <div id="toast"></div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function() {
-"use strict";
-
-/* ================================================================
-   FIREBASE CONFIG
-   Replace the URL below with your Firebase Realtime Database URL.
-   Example: https://paradise-abc12-default-rtdb.firebaseio.com
-   ================================================================ */
+<script>
 var FIREBASE_URL = "https://paradise-restaurant-4cdb8-default-rtdb.asia-southeast1.firebasedatabase.app";
-
-var MK = "paradise_menu_v2";
+var MK = 'paradise_menu_v2';
 var DEF_MENU = [
-  {id:"m1",name:"Chicken Pollichathu",cat:"BBQ & Grills",price:"Rs.280 - Rs.350",desc:"Marinated chicken wrapped in banana leaf, slow-cooked.",available:true,img:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=70",serves:"2"},
-  {id:"m2",name:"Al Faham Biryani",cat:"Biryani",price:"Rs.180 - Rs.260",desc:"Fragrant masala rice with tender chicken.",available:true,img:"https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=400&q=70",serves:"1"},
-  {id:"m3",name:"Fish BBQ",cat:"Seafood",price:"Rs.220 - Rs.320",desc:"Fresh catch, perfectly seasoned and char-grilled.",available:true,img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=70",serves:"1"},
-  {id:"m4",name:"Nool Parotta",cat:"Breads",price:"Rs.40 - Rs.60",desc:"Gossamer thin, buttery, impossibly fluffy layers.",available:true,img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=70",serves:"1"},
-  {id:"m5",name:"Chill Mill Kebab",cat:"Starters",price:"Rs.160 - Rs.200",desc:"Tender, spiced, grilled to a smoky finish.",available:true,img:"https://images.unsplash.com/photo-1529042410759-befb1204b468?w=400&q=70",serves:"2"},
-  {id:"m6",name:"Dragon Honey BBQ",cat:"BBQ & Grills",price:"Rs.260 - Rs.360",desc:"Juicy chicken glazed in sticky honey BBQ sauce.",available:true,img:"https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=400&q=70",serves:"2"},
-  {id:"m7",name:"Shawarma",cat:"Starters",price:"Rs.80 - Rs.120",desc:"Spiced meat wrapped with fresh vegetables.",available:true,img:"https://images.unsplash.com/photo-1561651823-34feb02250e4?w=400&q=70",serves:"1"},
-  {id:"m8",name:"Chicken 65 & Fried Rice",cat:"Chinese",price:"Rs.140 - Rs.220",desc:"Crispy Chicken 65 with wok-tossed fried rice.",available:true,img:"https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=70",serves:"1"},
-  {id:"m9",name:"Falooda & Muskmelon Juice",cat:"Beverages",price:"Rs.60 - Rs.120",desc:"Cool, sweet finale to your Paradise experience.",available:true,img:"https://images.unsplash.com/photo-1541614101331-1a5a3a194e92?w=400&q=70",serves:"1"},
-  {id:"m10",name:"Aloo Paratha & Butter Naan",cat:"Breads",price:"Rs.50 - Rs.90",desc:"Butter-rich stuffed parathas and soft Naans.",available:true,img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=70",serves:"1"}
+  {id:'m1',name:'Chicken Pollichathu',cat:'BBQ & Grills',price:'Rs.280-350',desc:'Marinated chicken wrapped in banana leaf, slow-cooked.',available:true,img:'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=70',serves:'2'},
+  {id:'m2',name:'Al Faham Biryani',cat:'Biryani',price:'Rs.180-260',desc:'Fragrant masala rice with tender chicken.',available:true,img:'https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=400&q=70',serves:'1'},
+  {id:'m3',name:'Fish BBQ',cat:'Seafood',price:'Rs.220-320',desc:'Fresh catch, perfectly seasoned and char-grilled.',available:true,img:'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=70',serves:'1'},
+  {id:'m4',name:'Nool Parotta',cat:'Breads',price:'Rs.40-60',desc:'Gossamer thin, buttery, impossibly fluffy layers.',available:true,img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=70',serves:'1'},
+  {id:'m5',name:'Chill Mill Kebab',cat:'Starters',price:'Rs.160-200',desc:'Tender, spiced, grilled to a smoky finish.',available:true,img:'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=400&q=70',serves:'2'},
+  {id:'m6',name:'Dragon Honey BBQ',cat:'BBQ & Grills',price:'Rs.260-360',desc:'Juicy chicken glazed in sticky honey BBQ sauce.',available:true,img:'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=400&q=70',serves:'2'},
+  {id:'m7',name:'Shawarma',cat:'Starters',price:'Rs.80-120',desc:'Spiced meat wrapped with fresh vegetables.',available:true,img:'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=400&q=70',serves:'1'},
+  {id:'m8',name:'Chicken 65 & Fried Rice',cat:'Chinese',price:'Rs.140-220',desc:'Crispy Chicken 65 with wok-tossed fried rice.',available:true,img:'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=70',serves:'1'},
+  {id:'m9',name:'Falooda & Juice',cat:'Beverages',price:'Rs.60-120',desc:'Cool, sweet finale to your Paradise experience.',available:true,img:'https://images.unsplash.com/photo-1541614101331-1a5a3a194e92?w=400&q=70',serves:'1'},
+  {id:'m10',name:'Aloo Paratha & Butter Naan',cat:'Breads',price:'Rs.50-90',desc:'Butter-rich stuffed parathas and soft Naans.',available:true,img:'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=70',serves:'1'}
 ];
+function getMenu(){try{return JSON.parse(localStorage.getItem(MK))||DEF_MENU.slice();}catch(e){return DEF_MENU.slice();}}
+function saveMenu(d){localStorage.setItem(MK,JSON.stringify(d));}
+if(!localStorage.getItem(MK))saveMenu(DEF_MENU);
 
-/* ── Menu: localStorage (admin-only) ── */
-function getMenu() { try { return JSON.parse(localStorage.getItem(MK)) || DEF_MENU.map(function(m){return Object.assign({},m)}); } catch(e) { return DEF_MENU.map(function(m){return Object.assign({},m)}); } }
-function saveMenu(d) { localStorage.setItem(MK, JSON.stringify(d)); }
-if (!localStorage.getItem(MK)) saveMenu(DEF_MENU);
+var cachedRes=[],editId=null,miAvail=true,miImg='',toastTimer=null,currentPage='dashboard',pollTimer=null,confirmCb=null;
 
-/* ── Reservations: Firebase Realtime Database ── */
-function isConfigured() {
-  return FIREBASE_URL && FIREBASE_URL.indexOf("YOUR-PROJECT") === -1 && FIREBASE_URL.indexOf("firebaseio.com") !== -1;
+function h(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmtS(d){if(!d)return '';return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
+function fmtF(d){if(!d)return '';return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});}
+function stag(s){var c={pending:'tamb',confirmed:'tgrn',completed:'tdim',cancelled:'tred'};var i={pending:'&#9679; ',confirmed:'&#10003; ',completed:'&#10004; ',cancelled:'&#10005; '};return '<span class="tag '+(c[s]||'tdim')+'">'+(i[s]||'')+s[0].toUpperCase()+s.slice(1)+'</span>';}
+function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('on');},2600);}
+function showConfirm(title,msg,cb){document.getElementById('cftitle').textContent=title;document.getElementById('cfmsg').textContent=msg;confirmCb=cb;document.getElementById('cfbg').classList.add('on');}
+function closeConfirm(){document.getElementById('cfbg').classList.remove('on');}
+function setPill(ok,msg){var el=document.getElementById('dbpill');el.textContent=msg||(ok?'Connected':'Offline');el.className='pill '+(ok?'pill-grn':'pill-red');}
+
+async function fbGet(){
+  var r=await fetch(FIREBASE_URL+'/reservations.json');
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  var d=await r.json();
+  if(!d)return [];
+  return Object.values(d).sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt);});
+}
+async function fbPatch(id,data){
+  var r=await fetch(FIREBASE_URL+'/reservations/'+id+'.json',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  if(!r.ok)throw new Error('HTTP '+r.status);
 }
 
-async function fetchReservations() {
-  if (!isConfigured()) return [];
-  var res = await fetch(FIREBASE_URL + "/reservations.json");
-  if (!res.ok) throw new Error("HTTP " + res.status);
-  var data = await res.json();
-  if (!data) return [];
-  return Object.values(data).sort(function(a,b){ return new Date(b.createdAt) - new Date(a.createdAt); });
-}
-
-async function updateReservationStatus(id, status) {
-  if (!isConfigured()) throw new Error("Firebase not configured");
-  var res = await fetch(FIREBASE_URL + "/reservations/" + id + ".json", {
-    method: "PATCH",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({status: status})
-  });
-  if (!res.ok) throw new Error("HTTP " + res.status);
-}
-
-/* ── State ── */
-var cachedRes = [];
-var editId = null;
-var miAvail = true;
-var miImg = "";
-var toastTimer = null;
-var currentPage = "dashboard";
-var refreshTimer = null;
-
-/* ── Init ── */
-function init() {
-  document.getElementById("loginBtn").addEventListener("click", doLogin);
-  document.getElementById("lp").addEventListener("keydown", function(e){ if(e.key==="Enter") doLogin(); });
-  document.getElementById("logoutBtn").addEventListener("click", doLogout);
-  document.getElementById("mobBtn").addEventListener("click", function(){ document.getElementById("sidebar").classList.toggle("mob"); });
-  document.getElementById("rdcloseBtn").addEventListener("click", closeRd);
-  document.getElementById("mcloseBtn").addEventListener("click", closeModal);
-  document.getElementById("mcancelBtn").addEventListener("click", closeModal);
-  document.getElementById("msaveBtn").addEventListener("click", saveItem);
-  document.getElementById("cfcancelBtn").addEventListener("click", closeConfirm);
-  document.getElementById("miToggle").addEventListener("click", toggleAvail);
-  document.getElementById("ni0").addEventListener("click", function(){ navTo("dashboard",0); });
-  document.getElementById("ni1").addEventListener("click", function(){ navTo("menu",1); });
-  document.getElementById("ni2").addEventListener("click", function(){ navTo("reservations",2); });
-  document.getElementById("ni3").addEventListener("click", function(){ navTo("settings",3); });
-}
-
-/* ── Auth ── */
-function doLogin() {
-  var u = document.getElementById("lu").value.trim();
-  var p = document.getElementById("lp").value;
-  if (u === "admin" && p === "1234") {
-    document.getElementById("loginScreen").style.display = "none";
-    document.getElementById("app").classList.add("on");
+function doLogin(){
+  var u=document.getElementById('lu').value.trim();
+  var p=document.getElementById('lp').value;
+  if(u==='admin'&&p==='1234'){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('app').classList.add('on');
     startClock();
-    renderDashboard();
-  } else {
-    document.getElementById("lerr").textContent = "Incorrect username or password.";
-    document.getElementById("lp").value = "";
+    navTo('dashboard',0);
+  }else{
+    document.getElementById('lerr').textContent='Incorrect username or password.';
+    document.getElementById('lp').value='';
   }
 }
-function doLogout() {
-  clearInterval(refreshTimer);
-  document.getElementById("app").classList.remove("on");
-  document.getElementById("loginScreen").style.display = "flex";
-  document.getElementById("lu").value = "";
-  document.getElementById("lp").value = "";
-  document.getElementById("lerr").textContent = "";
+function doLogout(){
+  clearInterval(pollTimer);
+  document.getElementById('app').classList.remove('on');
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('lu').value='';
+  document.getElementById('lp').value='';
+  document.getElementById('lerr').textContent='';
 }
+function navTo(page,idx){
+  currentPage=page;clearInterval(pollTimer);
+  for(var i=0;i<4;i++){var el=document.getElementById('ni'+i);if(el)el.classList.toggle('on',i===idx);}
+  var titles={dashboard:'Dashboard',menu:'Menu Items',reservations:'Reservations',settings:'Settings'};
+  document.getElementById('tbtitle').innerHTML='<strong>'+(titles[page]||page)+'</strong>';
+  if(page==='dashboard')renderDashboard();
+  else if(page==='menu')renderMenu();
+  else if(page==='reservations')renderReservations();
+  else if(page==='settings')renderSettings();
+}
+function startClock(){
+  function t(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
+  t();setInterval(t,60000);
+}
+function updateBadge(res){var p=res.filter(function(r){return r.status==='pending';}).length;var b=document.getElementById('badge');b.textContent=p;b.style.display=p?'inline':'none';}
 
-/* ── Nav ── */
-function navTo(page, idx) {
-  currentPage = page;
-  clearInterval(refreshTimer);
-  document.getElementById("sidebar").classList.remove("mob");
-  for (var i=0;i<4;i++) { var el=document.getElementById("ni"+i); if(el) el.classList.toggle("on",i===idx); }
-  var titles = {dashboard:"Dashboard",menu:"Menu Items",reservations:"Reservations",settings:"Settings"};
-  document.getElementById("tbtitle").innerHTML = "<strong>" + (titles[page]||page) + "</strong>";
-  if (page==="dashboard") renderDashboard();
-  else if (page==="menu") renderMenu();
-  else if (page==="reservations") renderReservations();
-  else if (page==="settings") renderSettings();
-}
-
-function startClock() {
-  function tick(){ document.getElementById("clock").textContent = new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"}); }
-  tick(); setInterval(tick,60000);
-}
-
-function setStatus(ok, msg) {
-  var el = document.getElementById("dbstatus");
-  el.textContent = msg || (ok ? "Connected" : "Offline");
-  el.className = "tbpill" + (ok ? "" : " err");
-  if (ok) {
-    var ls = document.getElementById("lastSync");
-    ls.textContent = "Updated " + new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
-  }
-}
-
-function updateBadge(res) {
-  var p = res.filter(function(r){ return r.status==="pending"; }).length;
-  var b = document.getElementById("badge");
-  b.textContent = p;
-  b.style.display = p>0 ? "inline" : "none";
-}
-
-/* ── Toast ── */
-function showToast(msg) {
-  var t = document.getElementById("toast");
-  t.textContent = msg; t.classList.add("on");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function(){ t.classList.remove("on"); }, 2600);
-}
-
-/* ── Confirm ── */
-function showConfirm(title, msg, cb) {
-  document.getElementById("cftitle").textContent = title;
-  document.getElementById("cfmsg").textContent = msg;
-  document.getElementById("cfbg").classList.add("on");
-  document.getElementById("cfokBtn").onclick = function(){ cb(); closeConfirm(); };
-}
-function closeConfirm(){ document.getElementById("cfbg").classList.remove("on"); }
-
-/* ── Helpers ── */
-function statusTag(s) {
-  var cls={pending:"tamb",confirmed:"tgrn",completed:"tdim",cancelled:"tred"};
-  var ic={pending:"&#9679; ",confirmed:"&#10003; ",completed:"&#10004; ",cancelled:"&#10005; "};
-  return "<span class=\"tag "+(cls[s]||"tdim")+"\">"+(ic[s]||"")+s.charAt(0).toUpperCase()+s.slice(1)+"</span>";
-}
-function fmtShort(d) {
-  if(!d) return "";
-  return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});
-}
-function fmtFull(d) {
-  if(!d) return "";
-  return new Date(d+"T00:00:00").toLocaleDateString("en-IN",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
-}
-function h(str) {
-  return String(str||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-}
-
-function configBanner() {
-  return "<div class=\"setup-banner\">" +
-    "<h3>&#9888; Firebase Setup Required</h3>" +
-    "<p>To sync reservations across all devices, set your Firebase Realtime Database URL in this file:</p>" +
-    "<p><code>var FIREBASE_URL = \"https://YOUR-PROJECT-default-rtdb.firebaseio.com\";</code></p>" +
-    "<p style=\"margin-top:10px\"><strong style=\"color:#fff\">Setup steps:</strong></p>" +
-    "<p>1. Go to <a href=\"https://console.firebase.google.com\" target=\"_blank\">console.firebase.google.com</a></p>" +
-    "<p>2. Create a project &rarr; Build &rarr; Realtime Database &rarr; Create Database</p>" +
-    "<p>3. In Rules tab, set both read &amp; write to <code>true</code> and Publish</p>" +
-    "<p>4. Copy your Database URL (shown at top) and paste it into both HTML files where it says <code>YOUR-PROJECT</code></p>" +
-    "</div>";
-}
-
-/* ── Dashboard ── */
-async function renderDashboard() {
-  var body = document.getElementById("body");
-  body.innerHTML = "<div style=\"margin-bottom:24px\"><h2 class=\"stitle\">Good day, <em>Admin</em></h2><p class=\"ssub\">Fetching latest data...</p></div><div style=\"text-align:center;padding:40px\"><div class=\"spinner\"></div></div>";
-
-  var res = [];
-  if (!isConfigured()) {
-    res = [];
-    setStatus(false, "Not configured");
-  } else {
-    try {
-      res = await fetchReservations();
-      cachedRes = res;
-      setStatus(true);
-    } catch(e) {
-      setStatus(false, "Offline");
-    }
-  }
+async function renderDashboard(){
+  var body=document.getElementById('body');
+  body.innerHTML='<div class="empty"><div class="spinner"></div><p style="color:var(--tf);font-size:13px">Loading...</p></div>';
+  var res=[];
+  try{res=await fbGet();cachedRes=res;setPill(true);}catch(e){setPill(false,'Offline');}
   updateBadge(res);
-
-  var menu = getMenu();
-  var pending = res.filter(function(r){ return r.status==="pending"; }).length;
-  var today = new Date().toISOString().split("T")[0];
-  var todayRes = res.filter(function(r){ return r.date===today; }).length;
-  var totalGuests = res.filter(function(r){ return r.status!=="cancelled"; }).reduce(function(s,r){ return s+Number(r.guests); },0);
-  var avail = menu.filter(function(m){ return m.available; }).length;
-  var catMap = {};
-  menu.forEach(function(m){ catMap[m.cat]=(catMap[m.cat]||0)+1; });
-  var catRows = Object.keys(catMap).map(function(cat){
-    return "<div style=\"display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--br);font-size:13px\"><span style=\"color:var(--td)\">" + h(cat) + "</span><span style=\"color:var(--gold);font-weight:500\">" + catMap[cat] + " item" + (catMap[cat]>1?"s":"") + "</span></div>";
-  }).join("");
-  var recentRows = res.slice(0,5).map(function(r){
-    return "<tr style=\"cursor:pointer\" data-rid=\""+h(r.id)+"\"><td><strong>"+h(r.name)+"</strong></td><td>"+fmtShort(r.date)+"<br><span style=\"font-size:11px;color:var(--tf)\">"+h(r.time)+"</span></td><td style=\"text-align:center\">"+h(r.guests)+"</td><td>"+statusTag(r.status)+"</td></tr>";
-  }).join("");
-
-  body.innerHTML =
-    (!isConfigured() ? configBanner() : "") +
-    "<div style=\"margin-bottom:24px\"><h2 class=\"stitle\">Good day, <em>Admin</em></h2><p class=\"ssub\">Paradise Restaurant overview.</p></div>" +
-    "<div class=\"g4\" style=\"margin-bottom:22px\">" +
-    "<div class=\"scard\"><div class=\"sicon\">&#9711;</div><div class=\"slabel\">Pending</div><div class=\"snum\">" + pending + "</div><div class=\"schange\">Awaiting confirmation</div></div>" +
-    "<div class=\"scard\"><div class=\"sicon\">&#9670;</div><div class=\"slabel\">Today's Bookings</div><div class=\"snum\">" + todayRes + "</div><div class=\"schange\">" + fmtShort(today) + "</div></div>" +
-    "<div class=\"scard\"><div class=\"sicon\">&#9632;</div><div class=\"slabel\">Menu Items</div><div class=\"snum\">" + menu.length + "</div><div class=\"schange\">" + avail + " available</div></div>" +
-    "<div class=\"scard\"><div class=\"sicon\">&#9711;</div><div class=\"slabel\">Total Guests</div><div class=\"snum\">" + totalGuests + "</div><div class=\"schange\">All bookings</div></div>" +
-    "</div>" +
-    "<div class=\"g2\">" +
-    "<div class=\"card\"><div class=\"fb\" style=\"margin-bottom:16px\"><div style=\"font-size:15px;color:#fff\">Recent Reservations</div><div style=\"display:flex;gap:8px\"><button class=\"btn bghst bsm\" id=\"dashRefBtn\">&#8635; Refresh</button><button class=\"btn bghst bsm\" id=\"dashResBtn\">View All</button></div></div>" +
-    (res.length===0
-      ? "<div class=\"empty\"><div class=\"eicon\">&#9711;</div><div class=\"etitle\">No reservations yet</div><div class=\"esub\">Customer bookings will appear here automatically.</div></div>"
-      : "<div class=\"twrap\"><table><thead><tr><th>Name</th><th>Date</th><th>Guests</th><th>Status</th></tr></thead><tbody id=\"dashRows\">"+recentRows+"</tbody></table></div>"
-    ) + "</div>" +
-    "<div class=\"card\"><div class=\"fb\" style=\"margin-bottom:16px\"><div style=\"font-size:15px;color:#fff\">Menu by Category</div><button class=\"btn bghst bsm\" id=\"dashMenuBtn\">Manage</button></div>" + catRows + "</div>" +
-    "</div>";
-
-  var dbtn = document.getElementById("dashResBtn");
-  if (dbtn) dbtn.addEventListener("click", function(){ navTo("reservations",2); });
-  var mbtn = document.getElementById("dashMenuBtn");
-  if (mbtn) mbtn.addEventListener("click", function(){ navTo("menu",1); });
-  var rbtn = document.getElementById("dashRefBtn");
-  if (rbtn) rbtn.addEventListener("click", function(){ renderDashboard(); });
-  document.querySelectorAll("[data-rid]").forEach(function(row){
-    row.addEventListener("click", function(){ openRd(this.getAttribute("data-rid"), res); });
-  });
-
-  clearInterval(refreshTimer);
-  refreshTimer = setInterval(function(){ if(currentPage==="dashboard") renderDashboard(); }, 30000);
+  var menu=getMenu();
+  var today=new Date().toISOString().split('T')[0];
+  var pending=res.filter(function(r){return r.status==='pending';}).length;
+  var todayN=res.filter(function(r){return r.date===today;}).length;
+  var guests=res.filter(function(r){return r.status!=='cancelled';}).reduce(function(s,r){return s+Number(r.guests);},0);
+  var catMap={};menu.forEach(function(m){catMap[m.cat]=(catMap[m.cat]||0)+1;});
+  var catHTML=Object.keys(catMap).map(function(c){return '<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--br);font-size:13px"><span style="color:var(--td)">'+h(c)+'</span><span style="color:var(--gold);font-weight:500">'+catMap[c]+' item'+(catMap[c]>1?'s':'')+'</span></div>';}).join('');
+  var recentHTML=res.slice(0,5).map(function(r){return '<tr data-rid="'+h(r.id)+'"><td><strong>'+h(r.name)+'</strong></td><td>'+fmtS(r.date)+'</td><td style="text-align:center">'+h(r.guests)+'</td><td>'+stag(r.status)+'</td></tr>';}).join('');
+  body.innerHTML=
+    '<div style="margin-bottom:24px"><h2 class="stitle">Good day, <em>Admin</em></h2><p class="ssub">Paradise Restaurant overview</p></div>'+
+    '<div class="g4" style="margin-bottom:22px">'+
+    '<div class="scard"><div class="sicon">&#9711;</div><div class="slabel">Pending</div><div class="snum">'+pending+'</div><div class="schange">Awaiting confirmation</div></div>'+
+    '<div class="scard"><div class="sicon">&#9670;</div><div class="slabel">Today</div><div class="snum">'+todayN+'</div><div class="schange">'+fmtS(today)+'</div></div>'+
+    '<div class="scard"><div class="sicon">&#9632;</div><div class="slabel">Menu Items</div><div class="snum">'+menu.length+'</div><div class="schange">'+menu.filter(function(m){return m.available;}).length+' available</div></div>'+
+    '<div class="scard"><div class="sicon">&#9711;</div><div class="slabel">Total Guests</div><div class="snum">'+guests+'</div><div class="schange">All bookings</div></div>'+
+    '</div>'+
+    '<div class="g2">'+
+    '<div class="card"><div class="fb" style="margin-bottom:16px"><div style="font-size:15px;color:#fff">Recent Reservations</div><div style="display:flex;gap:8px"><button class="btn bghst bsm" id="dbRef">&#8635; Refresh</button><button class="btn bghst bsm" id="dbAll">View All</button></div></div>'+
+    (res.length===0?'<div class="empty"><div class="eicon">&#9711;</div><div class="etitle">No reservations yet</div><div class="esub">Customer bookings will appear here automatically.</div></div>':'<div class="twrap"><table><thead><tr><th>Name</th><th>Date</th><th>Guests</th><th>Status</th></tr></thead><tbody>'+recentHTML+'</tbody></table></div>')+
+    '</div>'+
+    '<div class="card"><div class="fb" style="margin-bottom:16px"><div style="font-size:15px;color:#fff">Menu by Category</div><button class="btn bghst bsm" id="dbMenu">Manage</button></div>'+catHTML+'</div>'+
+    '</div>';
+  var dbRef=document.getElementById('dbRef');if(dbRef)dbRef.addEventListener('click',renderDashboard);
+  var dbAll=document.getElementById('dbAll');if(dbAll)dbAll.addEventListener('click',function(){navTo('reservations',2);});
+  var dbMenu=document.getElementById('dbMenu');if(dbMenu)dbMenu.addEventListener('click',function(){navTo('menu',1);});
+  document.querySelectorAll('[data-rid]').forEach(function(row){row.addEventListener('click',function(){openRd(this.getAttribute('data-rid'),res);});});
+  clearInterval(pollTimer);pollTimer=setInterval(function(){if(currentPage==='dashboard')renderDashboard();},15000);
 }
 
-/* ── Menu ── */
-function renderMenu() {
-  var menu = getMenu();
-  var cats = ["All"];
-  menu.forEach(function(m){ if(cats.indexOf(m.cat)===-1) cats.push(m.cat); });
-  var avail = menu.filter(function(m){ return m.available; }).length;
-  document.getElementById("body").innerHTML =
-    "<div class=\"fb\" style=\"margin-bottom:20px;flex-wrap:wrap;gap:12px\">" +
-    "<div><h2 class=\"stitle\">Menu <em>Items</em></h2><p class=\"ssub\">" + menu.length + " items &middot; " + avail + " available</p></div>" +
-    "<button class=\"btn bgold\" id=\"addItemBtn\">+ Add Item</button></div>" +
-    "<div class=\"fbar\"><input type=\"text\" class=\"fsearch\" id=\"msearch\" placeholder=\"Search items...\" style=\"flex:1;min-width:150px\">" +
-    "<select class=\"fsel\" id=\"mcatf\">" + cats.map(function(c){ return "<option>"+h(c)+"</option>"; }).join("") + "</select>" +
-    "<select class=\"fsel\" id=\"mavailf\"><option>All</option><option>Available</option><option>Unavailable</option></select>" +
-    "</div><div class=\"mgrid\" id=\"mgrid\"></div>";
+function renderMenu(){
+  var menu=getMenu();var cats=['All'];menu.forEach(function(m){if(cats.indexOf(m.cat)===-1)cats.push(m.cat);});
+  document.getElementById('body').innerHTML=
+    '<div class="fb" style="margin-bottom:20px;flex-wrap:wrap;gap:12px"><div><h2 class="stitle">Menu <em>Items</em></h2><p class="ssub">'+menu.length+' items</p></div><button class="btn bgold" id="addBtn">+ Add Item</button></div>'+
+    '<div class="fbar"><input type="text" class="fsearch" id="msrch" placeholder="Search..." style="flex:1;min-width:150px">'+
+    '<select class="fsel" id="mcatf">'+cats.map(function(c){return '<option>'+h(c)+'</option>';}).join('')+'</select>'+
+    '<select class="fsel" id="mavf"><option>All</option><option>Available</option><option>Unavailable</option></select></div>'+
+    '<div class="mgrid" id="mgrid"></div>';
   renderMGrid(menu);
-  document.getElementById("addItemBtn").addEventListener("click", openAdd);
-  document.getElementById("msearch").addEventListener("input", filterMenu);
-  document.getElementById("mcatf").addEventListener("change", filterMenu);
-  document.getElementById("mavailf").addEventListener("change", filterMenu);
+  document.getElementById('addBtn').addEventListener('click',openAdd);
+  document.getElementById('msrch').addEventListener('input',filterMenu);
+  document.getElementById('mcatf').addEventListener('change',filterMenu);
+  document.getElementById('mavf').addEventListener('change',filterMenu);
 }
-
-function filterMenu() {
-  var menu = getMenu();
-  var q = document.getElementById("msearch").value.toLowerCase();
-  var cat = document.getElementById("mcatf").value;
-  var av = document.getElementById("mavailf").value;
+function filterMenu(){
+  var menu=getMenu();var q=document.getElementById('msrch').value.toLowerCase();var cat=document.getElementById('mcatf').value;var av=document.getElementById('mavf').value;
   renderMGrid(menu.filter(function(m){
-    if(q && m.name.toLowerCase().indexOf(q)===-1 && m.cat.toLowerCase().indexOf(q)===-1) return false;
-    if(cat!=="All" && m.cat!==cat) return false;
-    if(av==="Available" && !m.available) return false;
-    if(av==="Unavailable" && m.available) return false;
+    if(q&&m.name.toLowerCase().indexOf(q)===-1&&m.cat.toLowerCase().indexOf(q)===-1)return false;
+    if(cat!=='All'&&m.cat!==cat)return false;
+    if(av==='Available'&&!m.available)return false;
+    if(av==='Unavailable'&&m.available)return false;
     return true;
   }));
 }
-
-function renderMGrid(items) {
-  var g = document.getElementById("mgrid");
-  if (!items.length) { g.innerHTML="<div class=\"empty\" style=\"grid-column:1/-1\"><div class=\"eicon\">&#9670;</div><div class=\"etitle\">No items found</div><div class=\"esub\">Try adjusting filters.</div></div>"; return; }
-  g.innerHTML = items.map(function(m){
-    return "<div class=\"mcard\">" +
-      "<div class=\"mimg\">" + (m.img?"<img src=\""+h(m.img)+"\" alt=\""+h(m.name)+"\" onerror=\"this.style.display='none'\">":"<div class=\"mnoimg\">&#9670;</div>") +
-      "<span class=\"mavail tag "+(m.available?"tgrn":"tred")+"\">"+(m.available?"Available":"Off Menu")+"</span>" +
-      "</div><div class=\"mbody\"><div class=\"mcat\">"+h(m.cat)+"</div><div class=\"mname\">"+h(m.name)+"</div><div class=\"mdesc\">"+h(m.desc||"")+"</div>" +
-      "<div class=\"mfoot\"><div class=\"mprice\">"+h(m.price)+"</div><div class=\"macts\">" +
-      "<button class=\"ibtn iedit\" data-eid=\""+h(m.id)+"\" title=\"Edit\">&#9998;</button>" +
-      "<button class=\"ibtn idel\" data-did=\""+h(m.id)+"\" data-dname=\""+h(m.name)+"\" title=\"Delete\">&#10005;</button>" +
-      "</div></div></div></div>";
-  }).join("");
-  document.querySelectorAll("[data-eid]").forEach(function(btn){ btn.addEventListener("click",function(){ openEdit(this.getAttribute("data-eid")); }); });
-  document.querySelectorAll("[data-did]").forEach(function(btn){ btn.addEventListener("click",function(){ deleteItem(this.getAttribute("data-did"),this.getAttribute("data-dname")); }); });
+function renderMGrid(items){
+  var g=document.getElementById('mgrid');
+  if(!items.length){g.innerHTML='<div class="empty" style="grid-column:1/-1"><div class="eicon">&#9670;</div><div class="etitle">No items found</div></div>';return;}
+  g.innerHTML=items.map(function(m){return '<div class="mcard"><div class="mimg">'+(m.img?'<img src="'+h(m.img)+'" alt="'+h(m.name)+'">':'<div style="font-size:32px;opacity:.2">&#9670;</div>')+'<span class="mavail tag '+(m.available?'tgrn':'tred')+'">'+(m.available?'Available':'Off Menu')+'</span></div><div class="mbody"><div class="mcat">'+h(m.cat)+'</div><div class="mname">'+h(m.name)+'</div><div class="mdesc">'+h(m.desc||'')+'</div><div class="mfoot"><div class="mprice">'+h(m.price)+'</div><div class="macts"><button class="ibtn iedit" data-eid="'+h(m.id)+'">&#9998;</button><button class="ibtn idel" data-did="'+h(m.id)+'" data-dn="'+h(m.name)+'">&#10005;</button></div></div></div></div>';}).join('');
+  document.querySelectorAll('[data-eid]').forEach(function(b){b.addEventListener('click',function(){openEdit(this.getAttribute('data-eid'));});});
+  document.querySelectorAll('[data-did]').forEach(function(b){b.addEventListener('click',function(){delItem(this.getAttribute('data-did'),this.getAttribute('data-dn'));});});
 }
+function openAdd(){editId=null;miAvail=true;miImg='';document.getElementById('mtitle').innerHTML='Add <em>Item</em>';document.getElementById('miName').value='';document.getElementById('miCat').value='';document.getElementById('miPrice').value='';document.getElementById('miDesc').value='';document.getElementById('miServes').value='1';document.getElementById('miToggle').className='tg on';document.getElementById('miToggleLabel').textContent='Available';buildImgUI(null);document.getElementById('menuModal').classList.add('on');}
+function openEdit(id){var menu=getMenu();var m=null;for(var i=0;i<menu.length;i++){if(menu[i].id===id){m=menu[i];break;}}if(!m)return;editId=id;miAvail=m.available;miImg=m.img||'';document.getElementById('mtitle').innerHTML='Edit <em>Item</em>';document.getElementById('miName').value=m.name;document.getElementById('miCat').value=m.cat;document.getElementById('miPrice').value=m.price;document.getElementById('miDesc').value=m.desc||'';document.getElementById('miServes').value=m.serves||'1';document.getElementById('miToggle').className='tg'+(m.available?' on':'');document.getElementById('miToggleLabel').textContent=m.available?'Available':'Unavailable';buildImgUI(m.img||null);document.getElementById('menuModal').classList.add('on');}
+function buildImgUI(cur){var g=document.getElementById('imgGroup');g.innerHTML='<label class="fl">Photo</label>';if(cur){g.innerHTML+='<div class="ipwrap"><img src="'+h(cur)+'" id="imgPrev"><button class="iprem" id="imgRem">&#10005;</button></div>';document.getElementById('imgRem').addEventListener('click',function(){miImg='';buildImgUI(null);});}else{g.innerHTML+='<div class="iupload" id="iup"><input type="file" id="imgF" accept="image/*"><div style="font-size:24px;opacity:.4;margin-bottom:7px">&#9650;</div><div style="font-size:13px;color:var(--td)">Click to upload photo</div><div style="font-size:11px;color:var(--tf);margin-top:3px">JPG, PNG, WEBP - Max 2MB</div></div>';document.getElementById('iup').addEventListener('click',function(){document.getElementById('imgF').click();});document.getElementById('imgF').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;if(f.size>2097152){showToast('Image too large - max 2MB');return;}var r=new FileReader();r.onload=function(ev){miImg=ev.target.result;buildImgUI(miImg);};r.readAsDataURL(f);});}}
+function toggleAvail(){miAvail=!miAvail;document.getElementById('miToggle').className='tg'+(miAvail?' on':'');document.getElementById('miToggleLabel').textContent=miAvail?'Available':'Unavailable';}
+function saveItem(){var name=document.getElementById('miName').value.trim();var cat=document.getElementById('miCat').value;var price=document.getElementById('miPrice').value.trim();document.querySelectorAll('.ferr').forEach(function(el){el.classList.remove('ferr');});var ok=true;if(!name){document.getElementById('miName').classList.add('ferr');ok=false;}if(!cat){document.getElementById('miCat').classList.add('ferr');ok=false;}if(!price){document.getElementById('miPrice').classList.add('ferr');ok=false;}if(!ok)return;var menu=getMenu();var item={id:editId||('m'+Date.now()),name:name,cat:cat,price:price,desc:document.getElementById('miDesc').value.trim(),serves:document.getElementById('miServes').value,available:miAvail,img:miImg};if(editId){for(var i=0;i<menu.length;i++){if(menu[i].id===editId){menu[i]=item;break;}}showToast('Item updated');}else{menu.push(item);showToast('Item added');}saveMenu(menu);closeModal();renderMenu();}
+function delItem(id,name){showConfirm('Delete "'+name+'"?','This item will be permanently removed.',function(){saveMenu(getMenu().filter(function(m){return m.id!==id;}));showToast('Deleted');renderMenu();});}
+function closeModal(){document.getElementById('menuModal').classList.remove('on');document.querySelectorAll('.ferr').forEach(function(el){el.classList.remove('ferr');});}
 
-function openAdd() {
-  editId=null; miAvail=true; miImg="";
-  document.getElementById("mtitle").innerHTML="Add <em>Menu Item</em>";
-  document.getElementById("miName").value="";
-  document.getElementById("miCat").value="";
-  document.getElementById("miPrice").value="";
-  document.getElementById("miDesc").value="";
-  document.getElementById("miServes").value="1";
-  document.getElementById("miToggle").className="tg on";
-  document.getElementById("miToggleLabel").textContent="Available";
-  buildImgUI(null);
-  document.getElementById("menuModal").classList.add("on");
+async function renderReservations(){
+  var body=document.getElementById('body');
+  body.innerHTML='<div class="fb" style="margin-bottom:20px;flex-wrap:wrap;gap:12px"><div><h2 class="stitle">Reservations</h2><p class="ssub" id="ressub">Loading...</p></div><button class="btn bghst bsm" id="resRef">&#8635; Refresh</button></div><div class="fbar"><input type="text" class="fsearch" id="rsrch" placeholder="Search name, phone, ref..." style="flex:1;min-width:180px"><select class="fsel" id="rstat"><option value="all">All Status</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select><select class="fsel" id="rdate"><option value="all">All Dates</option><option value="today">Today</option><option value="upcoming">Upcoming</option><option value="past">Past</option></select></div><div class="card" style="padding:0"><div class="twrap" id="restbl"><div style="text-align:center;padding:40px"><div class="spinner"></div></div></div></div>';
+  document.getElementById('resRef').addEventListener('click',renderReservations);
+  var res=[];
+  try{res=await fbGet();cachedRes=res;setPill(true);}catch(e){setPill(false,'Offline');document.getElementById('restbl').innerHTML='<div class="empty"><div class="eicon">&#9711;</div><div class="etitle">Could not load</div><div class="esub">Check your connection.</div></div>';return;}
+  var pending=res.filter(function(r){return r.status==='pending';}).length;
+  document.getElementById('ressub').textContent=res.length+' total · '+pending+' pending';
+  updateBadge(res);renderResTable(res,res);
+  document.getElementById('rsrch').addEventListener('input',function(){filterRes(res);});
+  document.getElementById('rstat').addEventListener('change',function(){filterRes(res);});
+  document.getElementById('rdate').addEventListener('change',function(){filterRes(res);});
+  clearInterval(pollTimer);pollTimer=setInterval(function(){if(currentPage==='reservations')renderReservations();},15000);
 }
-function openEdit(id) {
-  var menu=getMenu(); var m=null;
-  for(var i=0;i<menu.length;i++){if(menu[i].id===id){m=menu[i];break;}}
-  if(!m) return;
-  editId=id; miAvail=m.available; miImg=m.img||"";
-  document.getElementById("mtitle").innerHTML="Edit <em>Item</em>";
-  document.getElementById("miName").value=m.name;
-  document.getElementById("miCat").value=m.cat;
-  document.getElementById("miPrice").value=m.price.replace(/Rs\./g,"").trim();
-  document.getElementById("miDesc").value=m.desc||"";
-  document.getElementById("miServes").value=m.serves||"1";
-  document.getElementById("miToggle").className="tg"+(m.available?" on":"");
-  document.getElementById("miToggleLabel").textContent=m.available?"Available":"Unavailable";
-  buildImgUI(m.img||null);
-  document.getElementById("menuModal").classList.add("on");
-}
-function buildImgUI(cur) {
-  var g=document.getElementById("imgGroup");
-  g.innerHTML="<label class=\"fl\">Photo</label>";
-  if(cur){
-    g.innerHTML+="<div class=\"ipwrap\"><img src=\""+h(cur)+"\" id=\"imgPrev\"><button class=\"iprem\" id=\"imgRemBtn\">&#10005;</button></div>";
-    document.getElementById("imgRemBtn").addEventListener("click",function(){ miImg=""; buildImgUI(null); });
-  } else {
-    g.innerHTML+="<div class=\"iupload\" id=\"iupload\"><input type=\"file\" id=\"imgFile\" accept=\"image/*\"><div class=\"iuicon\">&#9650;</div><div class=\"iutext\">Click to upload photo</div><div class=\"iuhint\">JPG, PNG, WEBP &middot; Max 2MB</div></div>";
-    document.getElementById("iupload").addEventListener("click",function(){ document.getElementById("imgFile").click(); });
-    document.getElementById("imgFile").addEventListener("change",function(e){
-      var f=e.target.files[0]; if(!f) return;
-      if(f.size>2*1024*1024){showToast("Image too large - max 2MB");return;}
-      var r=new FileReader();
-      r.onload=function(ev){ miImg=ev.target.result; buildImgUI(miImg); };
-      r.readAsDataURL(f);
-    });
-  }
-}
-function toggleAvail(){ miAvail=!miAvail; document.getElementById("miToggle").className="tg"+(miAvail?" on":""); document.getElementById("miToggleLabel").textContent=miAvail?"Available":"Unavailable"; }
-function saveItem() {
-  var name=document.getElementById("miName").value.trim();
-  var cat=document.getElementById("miCat").value;
-  var price=document.getElementById("miPrice").value.trim();
-  document.querySelectorAll(".ferr").forEach(function(el){el.classList.remove("ferr");});
-  var ok=true;
-  if(!name){document.getElementById("miName").classList.add("ferr");ok=false;}
-  if(!cat){document.getElementById("miCat").classList.add("ferr");ok=false;}
-  if(!price){document.getElementById("miPrice").classList.add("ferr");ok=false;}
-  if(!ok) return;
-  var menu=getMenu();
-  var item={id:editId||("m"+Date.now()),name:name,cat:cat,price:price,desc:document.getElementById("miDesc").value.trim(),serves:document.getElementById("miServes").value,available:miAvail,img:miImg};
-  if(editId){ for(var i=0;i<menu.length;i++){if(menu[i].id===editId){menu[i]=item;break;}} showToast("Item updated"); }
-  else { menu.push(item); showToast("New item added"); }
-  saveMenu(menu); closeModal(); renderMenu();
-}
-function deleteItem(id,name){
-  showConfirm("Delete \""+name+"\"?","This item will be permanently removed.",function(){ saveMenu(getMenu().filter(function(m){return m.id!==id;})); showToast("Item deleted"); renderMenu(); });
-}
-function closeModal(){ document.getElementById("menuModal").classList.remove("on"); document.querySelectorAll(".ferr").forEach(function(el){el.classList.remove("ferr");}); }
-
-/* ── Reservations ── */
-async function renderReservations() {
-  var body = document.getElementById("body");
-  body.innerHTML =
-    "<div class=\"fb\" style=\"margin-bottom:20px;flex-wrap:wrap;gap:12px\">" +
-    "<div><h2 class=\"stitle\">Reservations</h2><p class=\"ssub\">Loading...</p></div>" +
-    "<button class=\"btn bghst\" id=\"resRefBtn\">&#8635; Refresh</button></div>" +
-    "<div class=\"fbar\">" +
-    "<input type=\"text\" class=\"fsearch\" id=\"rsearch\" placeholder=\"Search name, phone or ref...\" style=\"flex:1;min-width:180px\">" +
-    "<select class=\"fsel\" id=\"rstatf\"><option value=\"all\">All Status</option><option value=\"pending\">Pending</option><option value=\"confirmed\">Confirmed</option><option value=\"completed\">Completed</option><option value=\"cancelled\">Cancelled</option></select>" +
-    "<select class=\"fsel\" id=\"rdatef\"><option value=\"all\">All Dates</option><option value=\"today\">Today</option><option value=\"upcoming\">Upcoming</option><option value=\"past\">Past</option></select>" +
-    "</div>" +
-    "<div class=\"card\" style=\"padding:0\"><div class=\"twrap\" id=\"restbl\"><div style=\"text-align:center;padding:40px\"><div class=\"spinner\"></div><p style=\"color:var(--tf);font-size:13px\">Loading reservations...</p></div></div></div>";
-
-  document.getElementById("resRefBtn").addEventListener("click", function(){ renderReservations(); });
-
-  var res = [];
-  if (!isConfigured()) {
-    body.querySelector(".ssub").textContent = "Firebase not configured";
-    document.getElementById("restbl").innerHTML = configBanner();
-    return;
-  }
-  try {
-    res = await fetchReservations();
-    cachedRes = res;
-    setStatus(true);
-  } catch(e) {
-    setStatus(false, "Offline");
-    document.getElementById("restbl").innerHTML = "<div class=\"empty\"><div class=\"eicon\">&#9711;</div><div class=\"etitle\">Could not load reservations</div><div class=\"esub\">Check your internet connection and Firebase URL.</div></div>";
-    return;
-  }
-  var pending = res.filter(function(r){ return r.status==="pending"; }).length;
-  body.querySelector(".ssub").textContent = res.length + " total · " + pending + " pending";
-  updateBadge(res);
-  renderResTable(res, res);
-
-  document.getElementById("rsearch").addEventListener("input", function(){ filterRes(res); });
-  document.getElementById("rstatf").addEventListener("change", function(){ filterRes(res); });
-  document.getElementById("rdatef").addEventListener("change", function(){ filterRes(res); });
-
-  clearInterval(refreshTimer);
-  refreshTimer = setInterval(function(){ if(currentPage==="reservations") renderReservations(); }, 30000);
-}
-
-function filterRes(allRes) {
-  var q = document.getElementById("rsearch").value.toLowerCase();
-  var st = document.getElementById("rstatf").value;
-  var df = document.getElementById("rdatef").value;
-  var today = new Date().toISOString().split("T")[0];
-  renderResTable(allRes.filter(function(r){
-    if(q && r.name.toLowerCase().indexOf(q)===-1 && r.phone.indexOf(q)===-1 && r.id.toLowerCase().indexOf(q)===-1) return false;
-    if(st!=="all" && r.status!==st) return false;
-    if(df==="today" && r.date!==today) return false;
-    if(df==="upcoming" && r.date<=today) return false;
-    if(df==="past" && r.date>=today) return false;
+function filterRes(all){
+  var q=document.getElementById('rsrch').value.toLowerCase();var st=document.getElementById('rstat').value;var df=document.getElementById('rdate').value;var today=new Date().toISOString().split('T')[0];
+  renderResTable(all.filter(function(r){
+    if(q&&r.name.toLowerCase().indexOf(q)===-1&&r.phone.indexOf(q)===-1&&r.id.toLowerCase().indexOf(q)===-1)return false;
+    if(st!=='all'&&r.status!==st)return false;
+    if(df==='today'&&r.date!==today)return false;
+    if(df==='upcoming'&&r.date<=today)return false;
+    if(df==='past'&&r.date>=today)return false;
     return true;
-  }), allRes);
+  }),all);
 }
-
-function renderResTable(items, allRes) {
-  var w = document.getElementById("restbl");
-  if(!items.length){
-    w.innerHTML="<div class=\"empty\"><div class=\"eicon\">&#9711;</div><div class=\"etitle\">"+(allRes.length===0?"No reservations yet":"No results found")+"</div><div class=\"esub\">"+(allRes.length===0?"Customer bookings will appear here automatically.":"Try adjusting your filters.")+"</div></div>";
-    return;
-  }
-  var rows=items.map(function(r){
-    var oc=r.orders||{}; var ocount=Object.keys(oc).length;
-    return "<tr data-rid=\""+h(r.id)+"\"><td><span style=\"font-size:11px;color:var(--gold);letter-spacing:.06em\">"+h(r.id)+"</span></td><td><strong>"+h(r.name)+"</strong><br><span style=\"font-size:11.5px;color:var(--tf)\">"+h(r.phone)+"</span></td><td>"+fmtShort(r.date)+"<br><span style=\"font-size:11.5px;color:var(--tf)\">"+h(r.time)+"</span></td><td style=\"text-align:center\"><strong>"+h(r.guests)+"</strong></td><td style=\"font-size:12px\">"+h(r.occasion||"-")+"</td><td style=\"text-align:center\">"+(ocount?"<span class=\"tag tgold\">"+ocount+" item(s)</span>":"-")+"</td><td>"+statusTag(r.status)+"</td><td><div class=\"tda\"><button class=\"btn bghst bsm\" data-vrid=\""+h(r.id)+"\">View</button></div></td></tr>";
-  }).join("");
-  w.innerHTML="<table><thead><tr><th>Ref</th><th>Guest</th><th>Date &amp; Time</th><th>Guests</th><th>Occasion</th><th>Pre-Orders</th><th>Status</th><th></th></tr></thead><tbody>"+rows+"</tbody></table>";
-  document.querySelectorAll("[data-vrid]").forEach(function(btn){
-    btn.addEventListener("click",function(){ openRd(this.getAttribute("data-vrid"), items); });
-  });
+function renderResTable(items,all){
+  var w=document.getElementById('restbl');
+  if(!items.length){w.innerHTML='<div class="empty"><div class="eicon">&#9711;</div><div class="etitle">'+(all.length===0?'No reservations yet':'No results found')+'</div><div class="esub">'+(all.length===0?'Customer bookings will appear here automatically.':'Try adjusting filters.')+'</div></div>';return;}
+  w.innerHTML='<table><thead><tr><th>Ref</th><th>Guest</th><th>Date &amp; Time</th><th>Guests</th><th>Occasion</th><th>Pre-Orders</th><th>Status</th><th></th></tr></thead><tbody>'+items.map(function(r){var oc=r.orders||{};var oc2=Object.keys(oc).length;return '<tr><td><span style="font-size:11px;color:var(--gold)">'+h(r.id)+'</span></td><td><strong>'+h(r.name)+'</strong><br><span style="font-size:11.5px;color:var(--tf)">'+h(r.phone)+'</span></td><td>'+fmtS(r.date)+'<br><span style="font-size:11.5px;color:var(--tf)">'+h(r.time)+'</span></td><td style="text-align:center"><strong>'+h(r.guests)+'</strong></td><td style="font-size:12px">'+h(r.occasion||'-')+'</td><td style="text-align:center">'+(oc2?'<span class="tag tgold">'+oc2+' item(s)</span>':'-')+'</td><td>'+stag(r.status)+'</td><td><button class="btn bghst bsm" data-vrid="'+h(r.id)+'">View</button></td></tr>';}).join('')+'</tbody></table>';
+  document.querySelectorAll('[data-vrid]').forEach(function(b){b.addEventListener('click',function(){openRd(this.getAttribute('data-vrid'),items);});});
 }
-
-function openRd(id, resList) {
-  var r=null;
-  var list = resList || cachedRes;
-  for(var i=0;i<list.length;i++){if(list[i].id===id){r=list[i];break;}}
-  if(!r) return;
-  var menu=getMenu();
-  var oc=r.orders||{};
-  var okeys=Object.keys(oc);
+function openRd(id,list){
+  var r=null;var src=list||cachedRes;for(var i=0;i<src.length;i++){if(src[i].id===id){r=src[i];break;}}if(!r)return;
+  var menu=getMenu();var oc=r.orders||{};
   var rows=[
-    {k:"Mobile",v:"<a href=\"tel:"+h(r.phone)+"\" style=\"color:var(--gold);text-decoration:none\">"+h(r.phone)+"</a>"},
-    r.email?{k:"Email",v:h(r.email)}:null,
-    {k:"Date",v:fmtFull(r.date)},{k:"Time",v:h(r.time)},
-    {k:"Guests",v:h(r.guests)+" guest"+(r.guests>1?"s":"")},
-    r.seat?{k:"Seating",v:h(r.seat)}:null,
-    r.occasion?{k:"Occasion",v:h(r.occasion)}:null,
-    r.requests?{k:"Requests",v:h(r.requests)}:null,
-    {k:"Booked",v:new Date(r.createdAt).toLocaleString("en-IN",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"})}
-  ].filter(Boolean).map(function(row){ return "<div class=\"rdrow\"><span class=\"rdkey\">"+row.k+"</span><span class=\"rdval\">"+row.v+"</span></div>"; }).join("");
-  var ordersHTML="";
-  if(okeys.length){
-    var orows=okeys.map(function(k){ var m=null; for(var i=0;i<menu.length;i++){if(menu[i].id===k){m=menu[i];break;}} return "<div class=\"rdorow\"><span>"+h(m?m.name:k)+"</span><span>x "+oc[k]+"</span></div>"; }).join("");
-    ordersHTML="<div class=\"rdorders\"><div class=\"rdohead\">Pre-ordered Food</div>"+orows+"</div>";
-  }
-  document.getElementById("rdbody").innerHTML="<div class=\"rdref\">#"+h(r.id)+"</div><div class=\"rdname\">"+h(r.name)+"</div><div style=\"margin-bottom:18px\">"+statusTag(r.status)+"</div>"+rows+ordersHTML;
-  var statusBtns="";
-  if(r.status==="pending"){ statusBtns="<button class=\"rdsb\" style=\"background:var(--grnp);color:var(--grn);border:1px solid rgba(76,175,125,.3)\" data-uid=\""+h(r.id)+"\" data-us=\"confirmed\">Confirm</button><button class=\"rdsb\" style=\"background:var(--rp);color:var(--red);border:1px solid rgba(224,85,85,.25)\" data-uid=\""+h(r.id)+"\" data-us=\"cancelled\">Cancel</button>"; }
-  else if(r.status==="confirmed"){ statusBtns="<button class=\"rdsb\" style=\"background:var(--gp);color:var(--gl);border:1px solid var(--gb)\" data-uid=\""+h(r.id)+"\" data-us=\"completed\">Mark Completed</button><button class=\"rdsb\" style=\"background:var(--rp);color:var(--red);border:1px solid rgba(224,85,85,.25)\" data-uid=\""+h(r.id)+"\" data-us=\"cancelled\">Cancel</button>"; }
-  document.getElementById("rdfoot").innerHTML="<div class=\"rdsbrow\">"+statusBtns+"</div><a href=\"tel:"+h(r.phone)+"\" style=\"display:flex;align-items:center;justify-content:center;gap:7px;background:var(--gold);color:#fff;padding:11px;border-radius:8px;text-decoration:none;font-size:13.5px;font-weight:500\">Call "+h(r.name.split(" ")[0])+"</a>";
-  document.querySelectorAll("[data-uid]").forEach(function(btn){ btn.addEventListener("click",function(){ doUpdateStatus(this.getAttribute("data-uid"),this.getAttribute("data-us")); }); });
-  document.getElementById("rdpanel").classList.add("on");
+    {k:'Mobile',v:'<a href="tel:'+h(r.phone)+'" style="color:var(--gold);text-decoration:none">'+h(r.phone)+'</a>'},
+    r.email?{k:'Email',v:h(r.email)}:null,
+    {k:'Date',v:fmtF(r.date)},{k:'Time',v:h(r.time)},
+    {k:'Guests',v:h(r.guests)+' guest'+(r.guests>1?'s':'')},
+    r.seat?{k:'Seating',v:h(r.seat)}:null,
+    r.occasion?{k:'Occasion',v:h(r.occasion)}:null,
+    r.requests?{k:'Requests',v:h(r.requests)}:null,
+    {k:'Booked',v:new Date(r.createdAt).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}
+  ].filter(Boolean).map(function(row){return '<div class="rdrow"><span class="rdkey">'+row.k+'</span><span class="rdval">'+row.v+'</span></div>';}).join('');
+  var ordHTML='';var ok=Object.keys(oc);
+  if(ok.length){ordHTML='<div class="rdorders"><div class="rdohead">Pre-ordered Food</div>'+ok.map(function(k){var m=null;for(var i=0;i<menu.length;i++){if(menu[i].id===k){m=menu[i];break;}}return '<div class="rdorow"><span>'+h(m?m.name:k)+'</span><span>x '+oc[k]+'</span></div>';}).join('')+'</div>';}
+  document.getElementById('rdbody').innerHTML='<div class="rdref">#'+h(r.id)+'</div><div class="rdname">'+h(r.name)+'</div><div style="margin-bottom:18px">'+stag(r.status)+'</div>'+rows+ordHTML;
+  var sb='';
+  if(r.status==='pending')sb='<button class="rdsb" style="background:var(--grnp);color:var(--grn);border:1px solid rgba(76,175,125,.3)" data-uid="'+h(r.id)+'" data-us="confirmed">Confirm</button><button class="rdsb" style="background:var(--rp);color:var(--red);border:1px solid rgba(224,85,85,.25)" data-uid="'+h(r.id)+'" data-us="cancelled">Cancel</button>';
+  else if(r.status==='confirmed')sb='<button class="rdsb" style="background:var(--gp);color:var(--gl);border:1px solid var(--gb)" data-uid="'+h(r.id)+'" data-us="completed">Mark Completed</button><button class="rdsb" style="background:var(--rp);color:var(--red);border:1px solid rgba(224,85,85,.25)" data-uid="'+h(r.id)+'" data-us="cancelled">Cancel</button>';
+  document.getElementById('rdfoot').innerHTML='<div class="rdsbrow">'+sb+'</div><a href="tel:'+h(r.phone)+'" style="display:flex;align-items:center;justify-content:center;gap:7px;background:var(--gold);color:#fff;padding:11px;border-radius:8px;text-decoration:none;font-size:13.5px;font-weight:500">Call '+h(r.name.split(' ')[0])+'</a>';
+  document.querySelectorAll('[data-uid]').forEach(function(b){b.addEventListener('click',function(){doUpdateStatus(this.getAttribute('data-uid'),this.getAttribute('data-us'));});});
+  document.getElementById('rdpanel').classList.add('on');
 }
-function closeRd(){ document.getElementById("rdpanel").classList.remove("on"); }
-
-async function doUpdateStatus(id, s) {
-  var btns = document.querySelectorAll("[data-uid]");
-  btns.forEach(function(b){ b.disabled=true; b.style.opacity="0.5"; });
-  try {
-    await updateReservationStatus(id, s);
-    var labels={confirmed:"Reservation confirmed",cancelled:"Reservation cancelled",completed:"Marked as completed"};
-    showToast(labels[s]||"Status updated");
-    closeRd();
-    if(currentPage==="reservations") renderReservations();
-    else renderDashboard();
-  } catch(e) {
-    showToast("Update failed - check connection");
-    btns.forEach(function(b){ b.disabled=false; b.style.opacity="1"; });
-  }
+function closeRd(){document.getElementById('rdpanel').classList.remove('on');}
+async function doUpdateStatus(id,s){
+  try{await fbPatch(id,{status:s});showToast({confirmed:'Confirmed',cancelled:'Cancelled',completed:'Completed'}[s]||'Updated');closeRd();if(currentPage==='reservations')renderReservations();else renderDashboard();}
+  catch(e){showToast('Update failed - check connection');}
 }
 
-/* ── Settings ── */
-function renderSettings() {
-  document.getElementById("body").innerHTML =
-    "<h2 class=\"stitle\" style=\"margin-bottom:6px\">Settings</h2>" +
-    "<p class=\"ssub\">Manage restaurant info and credentials</p>" +
-    "<div class=\"setup-banner\" style=\"margin-bottom:22px\">" +
-    "<h3>Firebase Database URL</h3>" +
-    "<p>Current URL set in this file: <code id=\"showFbUrl\"></code></p>" +
-    "<p style=\"margin-top:8px;color:var(--tf)\">To change it, open paradise-admin.html and update the <code>FIREBASE_URL</code> variable at the top of the script. Do the same in paradise-restaurant.html.</p>" +
-    "</div>" +
-    "<div class=\"g2\" style=\"gap:16px\">" +
-    "<div class=\"card\"><div style=\"font-size:15px;color:#fff;margin-bottom:16px\">Restaurant Info</div>" +
-    "<div class=\"fg\"><label class=\"fl\">Name</label><input class=\"fi\" value=\"Paradise Restaurant\"></div>" +
-    "<div class=\"fg\"><label class=\"fl\">Phone</label><input class=\"fi\" value=\"075929 55559\"></div>" +
-    "<div class=\"fg\"><label class=\"fl\">Hours</label><input class=\"fi\" value=\"12:00 PM - 10:30 PM\"></div>" +
-    "<div class=\"fg\"><label class=\"fl\">Address</label><textarea class=\"fta\" style=\"min-height:60px\">Erode - Perundurai Rd, Perundurai TN 638052</textarea></div>" +
-    "<button class=\"btn bgold\" id=\"saveInfoBtn\">Save Info</button></div>" +
-    "<div>" +
-    "<div class=\"card\" style=\"margin-bottom:16px\"><div style=\"font-size:15px;color:#fff;margin-bottom:16px\">Change Password</div>" +
-    "<div class=\"fg\"><label class=\"fl\">Current Password</label><input type=\"password\" class=\"fi\" id=\"stOld\" placeholder=\"Current password\"></div>" +
-    "<div class=\"fg\"><label class=\"fl\">New Password</label><input type=\"password\" class=\"fi\" id=\"stNew\" placeholder=\"Min 6 characters\"></div>" +
-    "<div class=\"fg\"><label class=\"fl\">Confirm New</label><input type=\"password\" class=\"fi\" id=\"stConf\" placeholder=\"Repeat new password\"></div>" +
-    "<button class=\"btn bgold\" id=\"changePwBtn\">Update Password</button></div>" +
-    "<div class=\"card\"><div style=\"font-size:15px;color:#fff;margin-bottom:4px\">Menu Data</div>" +
-    "<p style=\"font-size:12px;color:var(--tf);margin-bottom:14px\">Reset menu to defaults (stored locally)</p>" +
-    "<button class=\"btn bghst\" id=\"resetMenuBtn\">Reset Menu to Default</button>" +
-    "</div></div></div>";
+function renderSettings(){
+  document.getElementById('body').innerHTML=
+    '<h2 class="stitle" style="margin-bottom:6px">Settings</h2><p class="ssub">Restaurant info and credentials</p>'+
+    '<div class="g2" style="gap:16px">'+
+    '<div class="card"><div style="font-size:15px;color:#fff;margin-bottom:16px">Restaurant Info</div>'+
+    '<div class="fg"><label class="fl">Name</label><input class="fi" value="Paradise Restaurant"></div>'+
+    '<div class="fg"><label class="fl">Phone</label><input class="fi" value="075929 55559"></div>'+
+    '<div class="fg"><label class="fl">Hours</label><input class="fi" value="12:00 PM - 10:30 PM"></div>'+
+    '<div class="fg"><label class="fl">Address</label><textarea class="fta" style="min-height:60px">Erode - Perundurai Rd, Perundurai TN 638052</textarea></div>'+
+    '<button class="btn bgold" id="saveInfo">Save Info</button></div>'+
+    '<div>'+
+    '<div class="card" style="margin-bottom:16px"><div style="font-size:15px;color:#fff;margin-bottom:16px">Change Password</div>'+
+    '<div class="fg"><label class="fl">Current Password</label><input type="password" class="fi" id="stOld" placeholder="Current password"></div>'+
+    '<div class="fg"><label class="fl">New Password</label><input type="password" class="fi" id="stNew" placeholder="Min 6 chars"></div>'+
+    '<div class="fg"><label class="fl">Confirm New</label><input type="password" class="fi" id="stConf" placeholder="Repeat password"></div>'+
+    '<button class="btn bgold" id="chgPw">Update Password</button></div>'+
+    '<div class="card"><div style="font-size:15px;color:#fff;margin-bottom:4px">Menu Data</div>'+
+    '<p style="font-size:12px;color:var(--tf);margin-bottom:14px">Reset menu items to factory defaults</p>'+
+    '<button class="btn bghst" id="resetMenu">Reset Menu to Default</button></div></div></div>';
+  document.getElementById('saveInfo').addEventListener('click',function(){showToast('Info saved');});
+  document.getElementById('chgPw').addEventListener('click',function(){var o=document.getElementById('stOld').value;var n=document.getElementById('stNew').value;var c=document.getElementById('stConf').value;if(o!=='1234'){showToast('Current password incorrect');return;}if(n.length<6){showToast('Min 6 characters');return;}if(n!==c){showToast('Passwords do not match');return;}showToast('Password updated');});
+  document.getElementById('resetMenu').addEventListener('click',function(){showConfirm('Reset Menu?','Restores all default menu items.',function(){localStorage.removeItem(MK);showToast('Menu reset');renderMenu();});});
+}
 
-  document.getElementById("showFbUrl").textContent = FIREBASE_URL;
-  document.getElementById("saveInfoBtn").addEventListener("click", function(){ showToast("Info saved"); });
-  document.getElementById("changePwBtn").addEventListener("click", function(){
-    var o=document.getElementById("stOld").value;
-    var n=document.getElementById("stNew").value;
-    var c=document.getElementById("stConf").value;
-    if(o!=="1234"){showToast("Current password incorrect");return;}
-    if(n.length<6){showToast("Password must be 6+ characters");return;}
-    if(n!==c){showToast("Passwords do not match");return;}
-    showToast("Password updated");
-  });
-  document.getElementById("resetMenuBtn").addEventListener("click", function(){
-    showConfirm(
+// Wire up everything once DOM is ready
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+document.getElementById('lp').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+document.getElementById('logoutBtn').addEventListener('click', doLogout);
+document.getElementById('rdcloseBtn').addEventListener('click', closeRd);
+document.getElementById('mcloseBtn').addEventListener('click', closeModal);
+document.getElementById('mcancelBtn').addEventListener('click', closeModal);
+document.getElementById('msaveBtn').addEventListener('click', saveItem);
+document.getElementById('cfcancelBtn').addEventListener('click', closeConfirm);
+document.getElementById('cfokBtn').addEventListener('click', function(){ if(confirmCb) confirmCb(); closeConfirm(); });
+document.getElementById('miToggle').addEventListener('click', toggleAvail);
+document.getElementById('ni0').addEventListener('click', function(){ navTo('dashboard',0); });
+document.getElementById('ni1').addEventListener('click', function(){ navTo('menu',1); });
+document.getElementById('ni2').addEventListener('click', function(){ navTo('reservations',2); });
+document.getElementById('ni3').addEventListener('click', function(){ navTo('settings',3); });
+</script>
+</body>
+</html>
