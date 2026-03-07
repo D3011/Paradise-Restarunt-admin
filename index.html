@@ -276,7 +276,7 @@ td strong{color:var(--tx);font-weight:500}
     <div class="sbfoot">
       <div class="sbuser">
         <div class="sbav">A</div>
-        <div><div class="sbuname">Admin</div><div class="sbemail">paradise@rest.in</div></div>
+        <div><div class="sbuname">Admin</div><div class="sbemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71011003101518021431031402055f181f">[email&#160;protected]</a></div></div>
         <button class="sblogout" id="logoutBtn" title="Logout">&#9211;</button>
       </div>
     </div>
@@ -361,7 +361,7 @@ td strong{color:var(--tx);font-weight:500}
 
 <div id="toast"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function() {
 "use strict";
 
@@ -901,13 +901,4 @@ function renderSettings() {
     showToast("Password updated");
   });
   document.getElementById("resetMenuBtn").addEventListener("click", function(){
-    showConfirm("Reset Menu?","Restores all default menu items.",function(){ localStorage.removeItem(MK); showToast("Menu reset"); renderMenu(); });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", init);
-
-})();
-</script>
-</body>
-</html>
+    showConfirm(
