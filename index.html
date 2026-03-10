@@ -309,24 +309,75 @@ function sendNotif(title, body, tag){
   } catch(e) { console.warn('Notification failed:', e); }
 }
 
-function checkNewReservations(freshRes){
-  if(knownIds === null){
-    // First load — just record IDs, don't notify
-    knownIds = {};
-    freshRes.forEach(function(r){ knownIds[r.id] = true; });
-    return;
-  }
-  var newOnes = freshRes.filter(function(r){ return !knownIds[r.id]; });
-  newOnes.forEach(function(r){
-    knownIds[r.id] = true;
-    sendNotif(
-      '\uD83D\uDD14 New Reservation — Paradise',
-      r.name + ' \u2022 ' + r.guests + ' guest' + (r.guests>1?'s':'') + ' \u2022 ' + fmtS(r.date) + ' at ' + r.time,
-      r.id
-    );
-    showToast('New reservation from ' + r.name + '!');
+var chimeLoop=null;var chimeCtx=null;
+function playChimeOnce(ctx,t){
+  var notes=[523.25,659.25,783.99,1046.50];
+  notes.forEach(function(freq,i){
+    var osc=ctx.createOscillator();var gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.type='sine';
+    osc.frequency.setValueAtTime(freq,t+i*0.18);
+    gain.gain.setValueAtTime(0,t+i*0.18);
+    gain.gain.linearRampToValueAtTime(0.4,t+i*0.18+0.04);
+    gain.gain.exponentialRampToValueAtTime(0.001,t+i*0.18+0.5);
+    osc.start(t+i*0.18);osc.stop(t+i*0.18+0.55);
   });
 }
+function startChimeLoop(){
+  try{
+    stopChimeLoop();
+    chimeCtx=new(window.AudioContext||window.webkitAudioContext)();
+    playChimeOnce(chimeCtx,chimeCtx.currentTime);
+    chimeLoop=setInterval(function(){if(chimeCtx)playChimeOnce(chimeCtx,chimeCtx.currentTime);},1400);
+  }catch(e){console.warn('Audio:',e);}
+}
+function stopChimeLoop(){
+  clearInterval(chimeLoop);chimeLoop=null;
+  if(chimeCtx){try{chimeCtx.close();}catch(e){}chimeCtx=null;}
+}
+var alertQueue=[];
+var alertShowing=false;
+
+function checkNewReservations(freshRes){
+  if(knownIds===null){
+    knownIds={};
+    freshRes.forEach(function(r){knownIds[r.id]=true;});
+    return;
+  }
+  var newOnes=freshRes.filter(function(r){return !knownIds[r.id];});
+  newOnes.forEach(function(r){
+    knownIds[r.id]=true;
+    alertQueue.push(r);
+    sendNotif('New Reservation - Paradise', r.name+' | '+r.guests+' guest'+(r.guests>1?'s':'')+' | '+fmtS(r.date)+' at '+r.time, r.id);
+  });
+  if(!alertShowing) showNextAlert();
+}
+
+function showNextAlert(){
+  if(alertQueue.length===0){alertShowing=false;return;}
+  alertShowing=true;
+  var r=alertQueue.shift();
+  var oc=r.orders||{};var ocKeys=Object.keys(oc);var menu=getMenu();
+  document.getElementById('alertMsg').innerHTML=
+    '<strong style="color:#fff;font-size:15px">'+h(r.name)+'</strong><br>'+
+    '&#128222; '+h(r.phone)+'<br>'+
+    '&#128197; '+fmtS(r.date)+'&nbsp;&bull;&nbsp;'+h(r.time)+'<br>'+
+    '&#128101; '+h(r.guests)+' guest'+(r.guests>1?'s':'')+(r.occasion?'&nbsp;&#127881; '+h(r.occasion):'')+
+    '<br><span style="color:rgba(232,237,244,.35);font-size:11px">Ref: '+h(r.id)+'</span>';
+  var listEl=document.getElementById('alertList');
+  if(ocKeys.length){
+    listEl.style.display='block';
+    listEl.innerHTML='<div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,237,244,.3);margin-bottom:8px">Pre-ordered Food</div>'+
+      ocKeys.map(function(k){
+        var m2=null;
+        for(var i=0;i<menu.length;i++){if(menu[i].id===k){m2=menu[i];break;}}
+        return '<div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(232,237,244,.65);padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span>'+h(m2?m2.name:k)+'</span><span style="color:#e0a85a">x'+oc[k]+'</span></div>';
+      }).join('');
+  }else{listEl.style.display='none';}
+  document.getElementById('resAlert').classList.add('show');
+  startChimeLoop();
+}
+
 
 async function fbGet(){
   var r=await fetch(FIREBASE_URL+'/reservations.json');
@@ -552,6 +603,30 @@ document.getElementById('ni0').addEventListener('click', function(){ navTo('dash
 document.getElementById('ni1').addEventListener('click', function(){ navTo('menu',1); });
 document.getElementById('ni2').addEventListener('click', function(){ navTo('reservations',2); });
 document.getElementById('ni3').addEventListener('click', function(){ navTo('settings',3); });
+
+window.addEventListener('load', function(){
+  var btn = document.getElementById('alertOkBtn');
+  if(btn) btn.addEventListener('click', function(){
+    stopChimeLoop();
+    document.getElementById('resAlert').classList.remove('show');
+    alertShowing=false;
+    setTimeout(showNextAlert,300);
+  });
+});
 </script>
+
+<div id="resAlert" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center">
+  <div style="background:#162030;border:1px solid rgba(197,136,58,.4);border-radius:20px;padding:36px 32px;width:min(380px,92vw);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:popIn .3s cubic-bezier(.22,1,.36,1)">
+    <div style="font-size:44px;margin-bottom:14px">🔔</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;margin-bottom:8px">New <em style="color:#c5883a">Reservation!</em></div>
+    <div id="alertMsg" style="font-size:13.5px;color:rgba(232,237,244,.6);line-height:1.8;margin-bottom:24px"></div>
+    <div id="alertList" style="background:#1e2d40;border-radius:10px;padding:14px;margin-bottom:22px;text-align:left;display:none"></div>
+    <button id="alertOkBtn" style="width:100%;background:#c5883a;color:#fff;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s">OK — Got it!</button>
+  </div>
+</div>
+<style>
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+#resAlert.show{display:flex}
+</style>
 </body>
 </html>
