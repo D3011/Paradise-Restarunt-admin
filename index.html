@@ -277,7 +277,7 @@ function getMenu(){try{return JSON.parse(localStorage.getItem(MK))||DEF_MENU.sli
 function saveMenu(d){localStorage.setItem(MK,JSON.stringify(d));}
 if(!localStorage.getItem(MK))saveMenu(DEF_MENU);
 
-var cachedRes=[],editId=null,miAvail=true,miImg='',toastTimer=null,currentPage='dashboard',pollTimer=null,confirmCb=null;
+var cachedRes=[],editId=null,miAvail=true,miImg='',toastTimer=null,currentPage='dashboard',pollTimer=null,confirmCb=null,knownIds=null;
 
 function h(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtS(d){if(!d)return '';return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
@@ -287,6 +287,46 @@ function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.c
 function showConfirm(title,msg,cb){document.getElementById('cftitle').textContent=title;document.getElementById('cfmsg').textContent=msg;confirmCb=cb;document.getElementById('cfbg').classList.add('on');}
 function closeConfirm(){document.getElementById('cfbg').classList.remove('on');}
 function setPill(ok,msg){var el=document.getElementById('dbpill');el.textContent=msg||(ok?'Connected':'Offline');el.className='pill '+(ok?'pill-grn':'pill-red');}
+
+
+function requestNotifPermission(){
+  if('Notification' in window && Notification.permission==='default'){
+    Notification.requestPermission();
+  }
+}
+
+function sendNotif(title, body, tag){
+  if(!('Notification' in window)) return;
+  if(Notification.permission!=='granted') return;
+  try {
+    var n = new Notification(title, {
+      body: body,
+      icon: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=64&q=70',
+      tag: tag || 'paradise-res',
+      requireInteraction: true
+    });
+    n.onclick = function(){ window.focus(); navTo('reservations',2); n.close(); };
+  } catch(e) { console.warn('Notification failed:', e); }
+}
+
+function checkNewReservations(freshRes){
+  if(knownIds === null){
+    // First load — just record IDs, don't notify
+    knownIds = {};
+    freshRes.forEach(function(r){ knownIds[r.id] = true; });
+    return;
+  }
+  var newOnes = freshRes.filter(function(r){ return !knownIds[r.id]; });
+  newOnes.forEach(function(r){
+    knownIds[r.id] = true;
+    sendNotif(
+      '\uD83D\uDD14 New Reservation — Paradise',
+      r.name + ' \u2022 ' + r.guests + ' guest' + (r.guests>1?'s':'') + ' \u2022 ' + fmtS(r.date) + ' at ' + r.time,
+      r.id
+    );
+    showToast('New reservation from ' + r.name + '!');
+  });
+}
 
 async function fbGet(){
   var r=await fetch(FIREBASE_URL+'/reservations.json');
@@ -307,6 +347,7 @@ function doLogin(){
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('app').classList.add('on');
     startClock();
+    requestNotifPermission();
     navTo('dashboard',0);
   }else{
     document.getElementById('lerr').textContent='Incorrect username or password.';
@@ -315,6 +356,7 @@ function doLogin(){
 }
 function doLogout(){
   clearInterval(pollTimer);
+  knownIds=null;
   document.getElementById('app').classList.remove('on');
   document.getElementById('loginScreen').style.display='flex';
   document.getElementById('lu').value='';
@@ -341,7 +383,7 @@ async function renderDashboard(){
   var body=document.getElementById('body');
   body.innerHTML='<div class="empty"><div class="spinner"></div><p style="color:var(--tf);font-size:13px">Loading...</p></div>';
   var res=[];
-  try{res=await fbGet();cachedRes=res;setPill(true);}catch(e){setPill(false,'Offline');}
+  try{res=await fbGet();checkNewReservations(res);cachedRes=res;setPill(true);}catch(e){setPill(false,'Offline');}
   updateBadge(res);
   var menu=getMenu();
   var today=new Date().toISOString().split('T')[0];
@@ -416,7 +458,7 @@ async function renderReservations(){
   body.innerHTML='<div class="fb" style="margin-bottom:20px;flex-wrap:wrap;gap:12px"><div><h2 class="stitle">Reservations</h2><p class="ssub" id="ressub">Loading...</p></div><button class="btn bghst bsm" id="resRef">&#8635; Refresh</button></div><div class="fbar"><input type="text" class="fsearch" id="rsrch" placeholder="Search name, phone, ref..." style="flex:1;min-width:180px"><select class="fsel" id="rstat"><option value="all">All Status</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select><select class="fsel" id="rdate"><option value="all">All Dates</option><option value="today">Today</option><option value="upcoming">Upcoming</option><option value="past">Past</option></select></div><div class="card" style="padding:0"><div class="twrap" id="restbl"><div style="text-align:center;padding:40px"><div class="spinner"></div></div></div></div>';
   document.getElementById('resRef').addEventListener('click',renderReservations);
   var res=[];
-  try{res=await fbGet();cachedRes=res;setPill(true);}catch(e){setPill(false,'Offline');document.getElementById('restbl').innerHTML='<div class="empty"><div class="eicon">&#9711;</div><div class="etitle">Could not load</div><div class="esub">Check your connection.</div></div>';return;}
+  try{res=await fbGet();checkNewReservations(res);cachedRes=res;setPill(true);}catch(e){setPill(false,'Offline');document.getElementById('restbl').innerHTML='<div class="empty"><div class="eicon">&#9711;</div><div class="etitle">Could not load</div><div class="esub">Check your connection.</div></div>';return;}
   var pending=res.filter(function(r){return r.status==='pending';}).length;
   document.getElementById('ressub').textContent=res.length+' total · '+pending+' pending';
   updateBadge(res);renderResTable(res,res);
