@@ -615,7 +615,7 @@ window.addEventListener('load', function(){
 });
 </script>
 
-<div id="resAlert" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center">
+<div id="resAlert" style="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);align-items:center;justify-content:center">
   <div style="background:#162030;border:1px solid rgba(197,136,58,.4);border-radius:20px;padding:36px 32px;width:min(380px,92vw);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:popIn .3s cubic-bezier(.22,1,.36,1)">
     <div style="font-size:44px;margin-bottom:14px">🔔</div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;margin-bottom:8px">New <em style="color:#c5883a">Reservation!</em></div>
@@ -626,7 +626,7 @@ window.addEventListener('load', function(){
 </div>
 <style>
 @keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
-#resAlert.show{display:flex}
+#resAlert{display:none} #resAlert.show{display:flex!important}
 </style>
 </body>
 </html>
